@@ -1,4 +1,15 @@
 <resources>
     <string name="app_name">SmartHome</string>
     <string name="action_settings">Settings</string>
+	<string name="activity_main_button_lights_ground">Oświetlenie parter</string>
+	<string name="activity_main_button_lights_attic">Oświetlenie poddasze</string>
+	<string name="activity_main_button_blinds_ground">Rolety parter</string>
+	<string name="activity_main_button_blinds_attic">Rolety poddasze</string>
+	<string name="common_up">↑</string>
+	<string name="common_down">↓</string>
+	<string name="common_off">OFF</string>
+	<string name="ground_host">192.168.1.25</string>
+	<string name="attic_host">192.168.1.26</string>
+	<string name="connection_failure_message">Nie udało się połączyć z rozdzielnią</string>
+	<string name="arduino_response_message">Odpowiedź z rozdzielni: </string>
 </resources>

@@ -1,10 +1,10 @@
-
 <?xml version="1.0" encoding="utf-8"?>
-<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:orientation="vertical"
     tools:context=".MainActivity">
 
     <android.support.v7.widget.Toolbar
@@ -14,7 +14,7 @@
         android:minHeight="?attr/actionBarSize"/>
 
     <Button
-        android:id="@+id/button_osw_parter"
+        android:id="@+id/button_lights_ground"
         style="@style/Widget.AppCompat.Button.Borderless"
         android:layout_width="1dp"
         android:layout_height="wrap_content"
@@ -23,27 +23,27 @@
         android:layout_marginRight="75dp"
         android:layout_marginStart="35dp"
         android:layout_marginTop="16dp"
-        android:onClick="navigateOswietlenieParter"
-        android:text="Oświetlenie parter"
+        android:onClick="NavigateLightsGround"
+        android:text="@string/activity_main_button_lights_ground"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
     <Button
-        android:id="@+id/buttonOswietlenieParterOff"
+        android:id="@+id/button_lights_ground_off"
         android:layout_width="68dp"
         android:layout_height="48dp"
         android:layout_marginLeft="23dp"
         android:layout_marginTop="0dp"
-        android:onClick="navigateOswietlenieParterOff"
-        android:text="OFF"
+        android:onClick="NavigateLightsGroundOff"
+        android:text="@string/common_off"
         android:textSize="14dp"
-        app:layout_constraintStart_toEndOf="@+id/button_osw_parter"
-        app:layout_constraintTop_toTopOf="@+id/button_osw_parter" />
+        app:layout_constraintStart_toEndOf="@+id/button_lights_ground"
+        app:layout_constraintTop_toTopOf="@+id/button_lights_ground" />
 
     <Button
-        android:id="@+id/button_osw_poddasze"
+        android:id="@+id/button_lights_attic"
         style="@style/Widget.AppCompat.Button.Borderless"
         android:layout_width="1dp"
         android:layout_height="wrap_content"
@@ -52,27 +52,27 @@
         android:layout_marginRight="75dp"
         android:layout_marginStart="35dp"
         android:layout_marginTop="50dp"
-        android:onClick="navigateOswietleniePoddasze"
-        android:text="Oświetlenie poddasze"
+        android:onClick="NavigateLightsAttic"
+        android:text="@string/activity_main_button_lights_attic"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="@+id/button_osw_parter" />
+        app:layout_constraintTop_toTopOf="@+id/button_lights_ground" />
 
     <Button
-        android:id="@+id/buttonOswietleniePoddaszeOff"
+        android:id="@+id/button_lights_attic_off"
         android:layout_width="68dp"
         android:layout_height="48dp"
         android:layout_marginLeft="23dp"
         android:layout_marginStart="23dp"
         android:layout_marginTop="4dp"
-        android:onClick="navigateOswietleniePoddaszeOff"
-        android:text="OFF"
+        android:onClick="NavigateLightsAtticOff"
+        android:text="@string/common_off"
         android:textSize="14dp"
-        app:layout_constraintStart_toEndOf="@+id/button_osw_poddasze"
-        app:layout_constraintTop_toTopOf="@+id/button_osw_poddasze" />
+        app:layout_constraintStart_toEndOf="@+id/button_lights_attic"
+        app:layout_constraintTop_toTopOf="@+id/button_lights_attic" />
 
     <Button
-        android:id="@+id/button_rolety_parter"
+        android:id="@+id/button_blinds_ground"
         style="@style/Widget.AppCompat.Button.Borderless"
         android:layout_width="1dp"
         android:layout_height="wrap_content"
@@ -81,43 +81,43 @@
         android:layout_marginRight="60dp"
         android:layout_marginStart="35dp"
         android:layout_marginTop="64dp"
-        android:onClick="navigateRoletyParter"
-        android:text="Rolety parter"
+        android:onClick="NavigateBlindsGround"
+        android:text="@string/activity_main_button_blinds_ground"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="@+id/button_osw_poddasze" />
+        app:layout_constraintTop_toTopOf="@+id/button_lights_attic" />
 
     <Button
-        android:id="@+id/buttonRoletyParterUp"
+        android:id="@+id/button_blinds_ground_up"
         android:layout_width="48dp"
         android:layout_height="48dp"
         android:layout_marginLeft="2dp"
         android:layout_marginStart="2dp"
         android:layout_marginTop="16dp"
-        android:onClick="navigateRoletyParterUp"
-        android:text="↑"
+        android:onClick="NavigateBlindsGroundUp"
+        android:text="@string/common_up"
         android:textSize="18dp"
         android:textStyle="bold"
-        app:layout_constraintStart_toEndOf="@+id/button_rolety_parter"
-        app:layout_constraintTop_toBottomOf="@id/button_osw_poddasze" />
+        app:layout_constraintStart_toEndOf="@+id/button_blinds_ground"
+        app:layout_constraintTop_toBottomOf="@id/button_lights_attic" />
 
     <Button
-        android:id="@+id/buttonRoletyParterDown"
+        android:id="@+id/button_blinds_ground_down"
         android:layout_width="48dp"
         android:layout_height="48dp"
         android:layout_marginStart="10dp"
         android:layout_marginLeft="10dp"
         android:layout_marginTop="16dp"
-        android:onClick="navigateRoletyParterDown"
-        android:text="↓"
+        android:onClick="NavigateBlindsGroundDown"
+        android:text="@string/common_down"
         android:textSize="18dp"
         android:textStyle="bold"
-        app:layout_constraintStart_toEndOf="@+id/buttonRoletyParterUp"
-        app:layout_constraintTop_toBottomOf="@id/button_osw_poddasze" />
+        app:layout_constraintStart_toEndOf="@+id/button_blinds_ground_up"
+        app:layout_constraintTop_toBottomOf="@id/button_lights_attic" />
 
     <Button
-        android:id="@+id/button_rolety_poddasze"
+        android:id="@+id/button_blinds_attic"
         style="@style/Widget.AppCompat.Button.Borderless"
         android:layout_width="1dp"
         android:layout_height="wrap_content"
@@ -126,37 +126,37 @@
         android:layout_marginRight="60dp"
         android:layout_marginStart="35dp"
         android:layout_marginTop="65dp"
-        android:onClick="navigateRoletyPoddaszze"
-        android:text="Rolety poddasze"
+        android:onClick="NavigateBlindsAttic"
+        android:text="@string/activity_main_button_blinds_attic"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="@+id/button_rolety_parter" />
+        app:layout_constraintTop_toTopOf="@+id/button_blinds_ground" />
 
     <Button
-        android:id="@+id/buttonRoletyPoddaszeUp"
+        android:id="@+id/button_blinds_attic_up"
         android:layout_width="48dp"
         android:layout_height="48dp"
         android:layout_marginLeft="2dp"
         android:layout_marginStart="2dp"
         android:layout_marginTop="16dp"
-        android:onClick="navigateRoletyPoddaszeUp"
-        android:text="↑"
+        android:onClick="NavigateBlindsAtticUp"
+        android:text="@string/common_up"
         android:textSize="18dp"
         android:textStyle="bold"
-        app:layout_constraintStart_toEndOf="@+id/button_rolety_poddasze"
-        app:layout_constraintTop_toBottomOf="@id/buttonRoletyParterUp" />
+        app:layout_constraintStart_toEndOf="@+id/button_blinds_attic"
+        app:layout_constraintTop_toBottomOf="@id/button_blinds_ground_up" />
 
     <Button
-        android:id="@+id/buttonRoletyPoddaszeDown"
+        android:id="@+id/button_blinds_attic_down"
         android:layout_width="48dp"
         android:layout_height="48dp"
         android:layout_marginStart="10dp"
         android:layout_marginLeft="10dp"
         android:layout_marginTop="16dp"
-        android:onClick="navigateRoletyPoddaszeDown"
-        android:text="↓"
+        android:onClick="NavigateBlindsAtticDown"
+        android:text="@string/common_down"
         android:textSize="18dp"
         android:textStyle="bold"
-        app:layout_constraintStart_toEndOf="@+id/buttonRoletyPoddaszeUp"
-        app:layout_constraintTop_toBottomOf="@id/buttonRoletyParterDown" />
-</android.support.constraint.ConstraintLayout>
+        app:layout_constraintStart_toEndOf="@+id/button_blinds_attic_up"
+        app:layout_constraintTop_toBottomOf="@id/button_blinds_ground_down" />
+</ConstraintLayout>

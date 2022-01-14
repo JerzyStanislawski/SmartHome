@@ -1,0 +1,27 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android" xmlns:app="http://schemas.android.com/apk/res-auto" >
+
+	<group>
+		<item android:id="@+id/action_settings"
+            android:title="Ustawienia"
+            android:icon="@drawable/ic_settings_white_24dp"
+            app:showAsAction="always"
+            />
+	</group>
+
+	<group>
+		<item
+            android:id="@+id/delete_item"
+            android:icon="@drawable/ic_delete_white_24dp"
+            app:showAsAction="always"
+            android:title="Usuń">
+		</item>
+		<item
+            android:id="@+id/submit_item"
+            android:icon="@drawable/ic_check_white_24dp"
+            app:showAsAction="always"
+            android:title="OK">
+		</item>
+	</group>
+
+</menu>
