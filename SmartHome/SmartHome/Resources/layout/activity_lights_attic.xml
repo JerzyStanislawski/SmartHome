@@ -1,0 +1,154 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".LightsAtticActivity">
+
+    <Switch
+        android:id="@+id/switchSypialnia"
+        android:layout_width="120dp"
+        android:layout_height="40dp"
+        android:layout_marginLeft="32dp"
+        android:layout_marginStart="12dp"
+        android:layout_marginTop="44dp"
+        android:text="Sypialnia"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        tools:checked="false" />
+
+
+    <Switch
+        android:id="@+id/switchAdam"
+        android:layout_width="120dp"
+        android:layout_height="40dp"
+        android:layout_marginLeft="32dp"
+        android:layout_marginStart="12dp"
+        android:layout_marginTop="44dp"
+        android:text="Adam"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/switchSypialnia"
+        tools:checked="false" />
+
+    <Switch
+        android:id="@+id/switchUla"
+        android:layout_width="120dp"
+        android:layout_height="40dp"
+        android:layout_marginLeft="32dp"
+        android:layout_marginStart="12dp"
+        android:layout_marginTop="44dp"
+        android:text="Ula"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/switchAdam"
+        tools:checked="false" />
+
+    <Switch
+        android:id="@+id/switchLazienka"
+        android:layout_width="120dp"
+        android:layout_height="40dp"
+        android:layout_marginLeft="32dp"
+        android:layout_marginStart="12dp"
+        android:layout_marginTop="44dp"
+        android:text="Łazienka"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/switchUla"
+        tools:checked="false" />
+
+    <Switch
+        android:id="@+id/switchLazienkaKinkiety"
+        android:layout_width="80dp"
+        android:layout_height="40dp"
+        android:layout_marginLeft="32dp"
+        android:layout_marginStart="12dp"
+        android:layout_marginTop="0dp"
+        android:text="Kin"
+        app:layout_constraintStart_toEndOf="@+id/switchLazienka"
+        app:layout_constraintTop_toTopOf="@+id/switchLazienka"
+        tools:checked="false" />
+
+    <Switch
+        android:id="@+id/switchLazienkaLed"
+        android:layout_width="80dp"
+        android:layout_height="40dp"
+        android:layout_marginLeft="32dp"
+        android:layout_marginStart="12dp"
+        android:layout_marginTop="0dp"
+        android:text="LED"
+        app:layout_constraintStart_toEndOf="@+id/switchLazienkaKinkiety"
+        app:layout_constraintTop_toTopOf="@+id/switchLazienka"
+        tools:checked="false" />
+
+    <Switch
+        android:id="@+id/switchPralnia"
+        android:layout_width="120dp"
+        android:layout_height="40dp"
+        android:layout_marginLeft="32dp"
+        android:layout_marginStart="12dp"
+        android:layout_marginTop="44dp"
+        android:text="Pralnia"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/switchLazienka"
+        tools:checked="false" />
+
+    <Switch
+        android:id="@+id/switchGarderoba"
+        android:layout_width="120dp"
+        android:layout_height="40dp"
+        android:layout_marginLeft="32dp"
+        android:layout_marginStart="12dp"
+        android:layout_marginTop="44dp"
+        android:text="Garderoba"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/switchPralnia"
+        tools:checked="false" />
+
+    <Switch
+        android:id="@+id/switchKorytarz"
+        android:layout_width="120dp"
+        android:layout_height="40dp"
+        android:layout_marginLeft="32dp"
+        android:layout_marginStart="12dp"
+        android:layout_marginTop="44dp"
+        android:text="Korytarz"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/switchGarderoba"
+        tools:checked="false" />
+
+    <Switch
+        android:id="@+id/switchKorytarzLed"
+        android:layout_width="120dp"
+        android:layout_height="40dp"
+        android:layout_marginLeft="32dp"
+        android:layout_marginStart="12dp"
+        android:layout_marginTop="0dp"
+        android:text="Nocne"
+        app:layout_constraintStart_toEndOf="@+id/switchKorytarz"
+        app:layout_constraintTop_toTopOf="@+id/switchKorytarz"
+        tools:checked="false" />
+
+    <Switch
+        android:id="@+id/switchSchody"
+        android:layout_width="120dp"
+        android:layout_height="40dp"
+        android:layout_marginLeft="32dp"
+        android:layout_marginStart="12dp"
+        android:layout_marginTop="44dp"
+        android:text="Schody"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/switchKorytarz"
+        tools:checked="false" />
+
+    <Switch
+        android:id="@+id/switchSchodyLed"
+        android:layout_width="120dp"
+        android:layout_height="40dp"
+        android:layout_marginLeft="32dp"
+        android:layout_marginStart="12dp"
+        android:layout_marginTop="0dp"
+        android:text="Nocne"
+        app:layout_constraintStart_toEndOf="@+id/switchSchody"
+        app:layout_constraintTop_toTopOf="@+id/switchSchody"
+        tools:checked="false" />
+
+</android.support.constraint.ConstraintLayout>

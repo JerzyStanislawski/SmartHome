@@ -1,0 +1,263 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".BlindsBasementActivity">
+
+    <TextView
+        android:id="@+id/textViewSalon"
+        android:layout_width="90dp"
+        android:layout_height="25dp"
+        android:layout_marginLeft="12dp"
+        android:layout_marginStart="12dp"
+        android:layout_marginTop="12dp"
+        android:text="Salon"
+        android:textSize="18dp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/buttonSalon1Up" />
+
+    <Button
+        android:id="@+id/buttonSalon1Up"
+        android:layout_width="48dp"
+        android:layout_height="48dp"
+        android:layout_marginLeft="20dp"
+        android:layout_marginStart="20dp"
+        android:layout_marginTop="16dp"
+        android:text="↑"
+        android:textSize="18dp"
+        android:textStyle="bold"
+        app:layout_constraintStart_toEndOf="@+id/textViewSalon"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <Button
+        android:id="@+id/buttonSalon1Down"
+        android:layout_width="48dp"
+        android:layout_height="48dp"
+        android:layout_marginStart="10dp"
+        android:layout_marginLeft="10dp"
+        android:layout_marginTop="16dp"
+        android:text="↓"
+        android:textSize="18dp"
+        android:textStyle="bold"
+        app:layout_constraintStart_toEndOf="@+id/buttonSalon1Up"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <Button
+        android:id="@+id/buttonSalon2Up"
+        android:layout_width="48dp"
+        android:layout_height="48dp"
+        android:layout_marginStart="20dp"
+        android:layout_marginLeft="20dp"
+        android:layout_marginTop="16dp"
+        android:text="↑"
+        android:textSize="18dp"
+        android:textStyle="bold"
+        app:layout_constraintStart_toEndOf="@+id/buttonSalon1Down"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <Button
+        android:id="@+id/buttonSalon2Down"
+        android:layout_width="48dp"
+        android:layout_height="48dp"
+        android:layout_marginLeft="10dp"
+        android:layout_marginStart="10dp"
+        android:layout_marginTop="16dp"
+        android:text="↓"
+        android:textSize="18dp"
+        android:textStyle="bold"
+        app:layout_constraintStart_toEndOf="@+id/buttonSalon2Up"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/textViewJadalnia"
+        android:layout_width="90dp"
+        android:layout_height="25dp"
+        android:layout_marginLeft="12dp"
+        android:layout_marginStart="12dp"
+        android:layout_marginTop="12dp"
+        android:text="Jadalnia"
+        android:textSize="18dp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="@id/buttonJadalniaUp" />
+
+    <Button
+        android:id="@+id/buttonJadalniaUp"
+        android:layout_width="48dp"
+        android:layout_height="48dp"
+        android:layout_marginLeft="20dp"
+        android:layout_marginStart="20dp"
+        android:layout_marginTop="16dp"
+        android:text="↑"
+        android:textSize="18dp"
+        android:textStyle="bold"
+        app:layout_constraintStart_toEndOf="@+id/textViewJadalnia"
+        app:layout_constraintTop_toBottomOf="@id/buttonSalon1Up" />
+
+    <Button
+        android:id="@+id/buttonJadalniaDown"
+        android:layout_width="48dp"
+        android:layout_height="48dp"
+        android:layout_marginStart="10dp"
+        android:layout_marginLeft="10dp"
+        android:layout_marginTop="16dp"
+        android:text="↓"
+        android:textSize="18dp"
+        android:textStyle="bold"
+        app:layout_constraintStart_toEndOf="@+id/buttonJadalniaUp"
+        app:layout_constraintTop_toBottomOf="@id/buttonSalon1Down" />
+
+    <TextView
+        android:id="@+id/textViewKuchnia"
+        android:layout_width="90dp"
+        android:layout_height="25dp"
+        android:layout_marginLeft="12dp"
+        android:layout_marginStart="12dp"
+        android:layout_marginTop="12dp"
+        android:text="Kuchnia"
+        android:textSize="18dp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="@id/buttonKuchniaUp" />
+
+    <Button
+        android:id="@+id/buttonKuchniaUp"
+        android:layout_width="48dp"
+        android:layout_height="48dp"
+        android:layout_marginLeft="20dp"
+        android:layout_marginStart="20dp"
+        android:layout_marginTop="16dp"
+        android:text="↑"
+        android:textSize="18dp"
+        android:textStyle="bold"
+        app:layout_constraintStart_toEndOf="@+id/textViewKuchnia"
+        app:layout_constraintTop_toBottomOf="@id/buttonJadalniaUp" />
+
+    <Button
+        android:id="@+id/buttonKuchniaDown"
+        android:layout_width="48dp"
+        android:layout_height="48dp"
+        android:layout_marginStart="10dp"
+        android:layout_marginLeft="10dp"
+        android:layout_marginTop="16dp"
+        android:text="↓"
+        android:textSize="18dp"
+        android:textStyle="bold"
+        app:layout_constraintStart_toEndOf="@+id/buttonKuchniaUp"
+        app:layout_constraintTop_toBottomOf="@id/buttonJadalniaDown" />
+
+    <TextView
+        android:id="@+id/textViewGabinet"
+        android:layout_width="90dp"
+        android:layout_height="25dp"
+        android:layout_marginLeft="12dp"
+        android:layout_marginStart="12dp"
+        android:layout_marginTop="12dp"
+        android:text="Gabinet"
+        android:textSize="18dp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="@id/buttonGabinetUp" />
+
+    <Button
+        android:id="@+id/buttonGabinetUp"
+        android:layout_width="48dp"
+        android:layout_height="48dp"
+        android:layout_marginLeft="20dp"
+        android:layout_marginStart="20dp"
+        android:layout_marginTop="16dp"
+        android:text="↑"
+        android:textSize="18dp"
+        android:textStyle="bold"
+        app:layout_constraintStart_toEndOf="@+id/textViewGabinet"
+        app:layout_constraintTop_toBottomOf="@id/buttonKuchniaUp" />
+
+    <Button
+        android:id="@+id/buttonGabinetDown"
+        android:layout_width="48dp"
+        android:layout_height="48dp"
+        android:layout_marginStart="10dp"
+        android:layout_marginLeft="10dp"
+        android:layout_marginTop="16dp"
+        android:text="↓"
+        android:textSize="18dp"
+        android:textStyle="bold"
+        app:layout_constraintStart_toEndOf="@+id/buttonGabinetUp"
+        app:layout_constraintTop_toBottomOf="@id/buttonKuchniaDown" />
+
+
+    <TextView
+        android:id="@+id/textViewWiatrolap"
+        android:layout_width="90dp"
+        android:layout_height="25dp"
+        android:layout_marginLeft="12dp"
+        android:layout_marginStart="12dp"
+        android:layout_marginTop="12dp"
+        android:text="Wiatrołap"
+        android:textSize="18dp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="@id/buttonWiatrolapUp" />
+
+    <Button
+        android:id="@+id/buttonWiatrolapUp"
+        android:layout_width="48dp"
+        android:layout_height="48dp"
+        android:layout_marginLeft="20dp"
+        android:layout_marginStart="20dp"
+        android:layout_marginTop="16dp"
+        android:text="↑"
+        android:textSize="18dp"
+        android:textStyle="bold"
+        app:layout_constraintStart_toEndOf="@+id/textViewWiatrolap"
+        app:layout_constraintTop_toBottomOf="@id/buttonGabinetUp" />
+
+    <Button
+        android:id="@+id/buttonWiatrolapDown"
+        android:layout_width="48dp"
+        android:layout_height="48dp"
+        android:layout_marginStart="10dp"
+        android:layout_marginLeft="10dp"
+        android:layout_marginTop="16dp"
+        android:text="↓"
+        android:textSize="18dp"
+        android:textStyle="bold"
+        app:layout_constraintStart_toEndOf="@+id/buttonWiatrolapUp"
+        app:layout_constraintTop_toBottomOf="@id/buttonGabinetDown" />
+
+    <TextView
+        android:id="@+id/textViewKotlownia"
+        android:layout_width="90dp"
+        android:layout_height="25dp"
+        android:layout_marginLeft="12dp"
+        android:layout_marginStart="12dp"
+        android:layout_marginTop="12dp"
+        android:text="Kotłownia"
+        android:textSize="18dp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/buttonKotlowniaUp" />
+
+    <Button
+        android:id="@+id/buttonKotlowniaUp"
+        android:layout_width="48dp"
+        android:layout_height="48dp"
+        android:layout_marginLeft="20dp"
+        android:layout_marginStart="20dp"
+        android:layout_marginTop="16dp"
+        android:text="↑"
+        android:textSize="18dp"
+        android:textStyle="bold"
+        app:layout_constraintStart_toEndOf="@+id/textViewKotlownia"
+        app:layout_constraintTop_toBottomOf="@id/buttonWiatrolapUp" />
+
+    <Button
+        android:id="@+id/buttonKotlowniaDown"
+        android:layout_width="48dp"
+        android:layout_height="48dp"
+        android:layout_marginStart="10dp"
+        android:layout_marginLeft="10dp"
+        android:layout_marginTop="16dp"
+        android:text="↓"
+        android:textSize="18dp"
+        android:textStyle="bold"
+        app:layout_constraintStart_toEndOf="@+id/buttonKotlowniaUp"
+        app:layout_constraintTop_toBottomOf="@id/buttonWiatrolapDown" />
+</android.support.constraint.ConstraintLayout>

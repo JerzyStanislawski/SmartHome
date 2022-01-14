@@ -1,0 +1,205 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".LightsBasementActivity">
+
+    <android.support.v7.widget.Toolbar
+        android:id="@+id/toolbar_top"
+        android:layout_height="wrap_content"
+        android:layout_width="match_parent"
+        android:minHeight="?attr/actionBarSize"/>
+    <Switch
+        android:id="@+id/switchSalon"
+        android:layout_width="120dp"
+        android:layout_height="40dp"
+        android:layout_marginLeft="32dp"
+        android:layout_marginStart="12dp"
+        android:layout_marginTop="44dp"
+        android:text="Salon"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        tools:checked="false" />
+
+    <Switch
+        android:id="@+id/switchSalonKominek"
+        android:layout_width="80dp"
+        android:layout_height="40dp"
+        android:layout_marginLeft="32dp"
+        android:layout_marginStart="12dp"
+        android:layout_marginTop="44dp"
+        android:text="Kom"
+        app:layout_constraintStart_toEndOf="@+id/switchSalon"
+        app:layout_constraintTop_toTopOf="parent"
+        tools:checked="false" />
+
+    <Switch
+        android:id="@+id/switchSalonLed"
+        android:layout_width="80dp"
+        android:layout_height="40dp"
+        android:layout_marginLeft="32dp"
+        android:layout_marginStart="12dp"
+        android:layout_marginTop="44dp"
+        android:text="LED"
+        app:layout_constraintStart_toEndOf="@+id/switchSalonKominek"
+        app:layout_constraintTop_toTopOf="parent"
+        tools:checked="false" />
+
+    <Switch
+        android:id="@+id/switchKuchnia"
+        android:layout_width="120dp"
+        android:layout_height="40dp"
+        android:layout_marginLeft="32dp"
+        android:layout_marginStart="12dp"
+        android:layout_marginTop="44dp"
+        android:text="Kuchnia"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/switchSalon"
+        tools:checked="false" />
+
+    <Switch
+        android:id="@+id/switchSzafki"
+        android:layout_width="80dp"
+        android:layout_height="40dp"
+        android:layout_marginLeft="32dp"
+        android:layout_marginStart="12dp"
+        android:layout_marginTop="44dp"
+        android:text="Blat"
+        app:layout_constraintStart_toEndOf="@+id/switchKuchnia"
+        app:layout_constraintTop_toTopOf="@+id/switchSalonKominek"
+        tools:checked="false" />
+
+    <Switch
+        android:id="@+id/switchSpizarnia"
+        android:layout_width="80dp"
+        android:layout_height="40dp"
+        android:layout_marginLeft="32dp"
+        android:layout_marginStart="12dp"
+        android:layout_marginTop="44dp"
+        android:text="Spiż"
+        app:layout_constraintStart_toEndOf="@+id/switchSzafki"
+        app:layout_constraintTop_toTopOf="@+id/switchSalonLed"
+        tools:checked="false" />
+
+    <Switch
+        android:id="@+id/switchJadalnia"
+        android:layout_width="120dp"
+        android:layout_height="40dp"
+        android:layout_marginLeft="32dp"
+        android:layout_marginStart="12dp"
+        android:layout_marginTop="44dp"
+        android:text="Jadalnia"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/switchKuchnia"
+        tools:checked="false" />
+
+    <Switch
+        android:id="@+id/switchBarek"
+        android:layout_width="120dp"
+        android:layout_height="40dp"
+        android:layout_marginLeft="32dp"
+        android:layout_marginStart="12dp"
+        android:layout_marginTop="44dp"
+        android:text="Barek"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/switchJadalnia"
+        tools:checked="false" />
+
+    <Switch
+        android:id="@+id/switchGabinet"
+        android:layout_width="120dp"
+        android:layout_height="40dp"
+        android:layout_marginLeft="32dp"
+        android:layout_marginStart="12dp"
+        android:layout_marginTop="44dp"
+        android:text="Gabinet"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/switchBarek"
+        tools:checked="false" />
+
+    <Switch
+        android:id="@+id/switchLazienka"
+        android:layout_width="120dp"
+        android:layout_height="40dp"
+        android:layout_marginLeft="32dp"
+        android:layout_marginStart="12dp"
+        android:layout_marginTop="44dp"
+        android:text="Lazienka"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/switchGabinet"
+        tools:checked="false" />
+
+    <Switch
+        android:id="@+id/switchLustro"
+        android:layout_width="100dp"
+        android:layout_height="40dp"
+        android:layout_marginLeft="32dp"
+        android:layout_marginStart="12dp"
+        android:layout_marginTop="44dp"
+        android:text="Lustro"
+        app:layout_constraintStart_toEndOf="@+id/switchLazienka"
+        app:layout_constraintTop_toTopOf="@+id/switchGabinet"
+        tools:checked="false" />
+
+    <Switch
+        android:id="@+id/switchHall"
+        android:layout_width="120dp"
+        android:layout_height="40dp"
+        android:layout_marginLeft="32dp"
+        android:layout_marginStart="12dp"
+        android:layout_marginTop="44dp"
+        android:text="Hall"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/switchLazienka"
+        tools:checked="false" />
+
+    <Switch
+        android:id="@+id/switchWiatrolap"
+        android:layout_width="120dp"
+        android:layout_height="40dp"
+        android:layout_marginLeft="32dp"
+        android:layout_marginStart="12dp"
+        android:layout_marginTop="44dp"
+        android:text="Wiatrołap"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/switchHall"
+        tools:checked="false" />
+
+    <Switch
+        android:id="@+id/switchKotlownia"
+        android:layout_width="120dp"
+        android:layout_height="40dp"
+        android:layout_marginLeft="32dp"
+        android:layout_marginStart="12dp"
+        android:layout_marginTop="44dp"
+        android:text="Kotłownia"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/switchWiatrolap"
+        tools:checked="false" />
+
+    <Switch
+        android:id="@+id/switchGaraz"
+        android:layout_width="120dp"
+        android:layout_height="40dp"
+        android:layout_marginLeft="32dp"
+        android:layout_marginStart="12dp"
+        android:layout_marginTop="44dp"
+        android:text="Garaż"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/switchKotlownia"
+        tools:checked="false" />
+
+    <Switch
+        android:id="@+id/switchWejscie"
+        android:layout_width="120dp"
+        android:layout_height="40dp"
+        android:layout_marginLeft="32dp"
+        android:layout_marginStart="12dp"
+        android:layout_marginTop="44dp"
+        android:text="Wejście"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/switchGaraz"
+        tools:checked="false" />
+</android.support.constraint.ConstraintLayout>
