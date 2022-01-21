@@ -1,0 +1,208 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".SettingsActivity">
+
+    <LinearLayout
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
+
+        <TextView
+            android:id="@+id/arduino1_caption"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Arduino 1"
+            android:textSize="20sp"
+            android:layout_gravity="center"
+            android:layout_marginTop="10dp"/>
+        <TextView
+            android:id="@+id/arduino1_ping"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Ping"
+            android:textSize="14sp"
+            android:layout_marginTop="10dp"
+            android:layout_gravity="center"/>
+
+        <LinearLayout
+            android:id="@+id/arduino1_data"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:layout_marginTop="10dp">
+
+            <LinearLayout
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+                <TextView
+                    android:layout_width="0dp"
+                    android:layout_weight="0.2"
+                    android:layout_height="wrap_content"
+                    android:text="Czas "
+                    android:textSize="14sp"
+                    android:layout_marginLeft="10dp"
+                    android:layout_marginTop="10dp"/>
+                <TextView
+                    android:id="@+id/arduino1_time"
+                    android:layout_width="0dp"
+                    android:layout_weight="0.5"
+                    android:layout_height="wrap_content"
+                    android:textSize="14sp"
+                    android:textAlignment="center"
+                    android:layout_marginTop="10dp"/>
+                <Button
+                    android:id="@+id/arduino1_buttonUpdateTime"
+                    android:layout_width="0dp"
+                    android:layout_weight="0.3"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="10dp"
+                    android:layout_marginRight="10dp"
+                    android:onClick="navigateUpdateTime"
+                    android:text="Aktualizuj"
+                    android:textSize="12sp"
+                    android:textStyle="bold"/>
+            </LinearLayout>
+
+            <Switch
+                android:id="@+id/arduino1_holiday_mode"
+                android:layout_width="250dp"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
+                android:layout_marginLeft="10dp"
+                android:text="Wakacje"
+                android:onClick="navigateSwitchHolidayMode"/>
+
+            <Switch
+                android:id="@+id/arduino1_twilight_mode"
+                android:layout_width="250dp"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
+                android:layout_marginLeft="10dp"
+                android:text="Zamykaj rolety o zmierzchu"
+                android:onClick="navigateSwitchTwilightMode"/>
+
+            <Switch
+                android:id="@+id/arduino1_morning_mode"
+                android:layout_width="250dp"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
+                android:layout_marginLeft="10dp"
+                android:text="Otwieraj rolety"
+                android:onClick="navigateTimePopup"/>
+
+            <TextView
+                android:id="@+id/arduino1_morning_time"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
+                android:layout_marginLeft="30dp"
+                android:visibility="gone"/>
+
+        </LinearLayout>
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="2dp"
+            android:background="?android:attr/listDivider"
+            android:layout_marginTop="10dp"
+            android:layout_marginBottom="10dp"/>
+
+        <TextView
+            android:id="@+id/arduino2_caption"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Arduino 2"
+            android:layout_gravity="center"
+            android:textSize="20sp"
+            android:paddingTop="10dp"/>
+        <TextView
+            android:id="@+id/arduino2_ping"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Ping"
+            android:textSize="14sp"
+            android:layout_gravity="center"/>
+
+        <LinearLayout
+            android:id="@+id/arduino2_data"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:layout_marginTop="10dp">
+
+            <LinearLayout
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+                <TextView
+                    android:layout_width="0dp"
+                    android:layout_weight="0.2"
+                    android:layout_height="wrap_content"
+                    android:text="Czas "
+                    android:textSize="14sp"
+                    android:layout_marginLeft="10dp"
+                    android:layout_marginTop="10dp"/>
+                <TextView
+                    android:id="@+id/arduino2_time"
+                    android:layout_width="0dp"
+                    android:layout_weight="0.5"
+                    android:layout_height="wrap_content"
+                    android:textSize="14sp"
+                    android:textAlignment="center"
+                    android:layout_marginTop="10dp"/>
+                <Button
+                    android:id="@+id/arduino2_buttonUpdateTime"
+                    android:layout_width="0dp"
+                    android:layout_weight="0.3"
+                    android:layout_height="wrap_content"
+                    android:layout_marginRight="10dp"
+                    android:layout_marginTop="10dp"
+                    android:onClick="navigateUpdateTime"
+                    android:text="Aktualizuj"
+                    android:textSize="12sp"
+                    android:textStyle="bold"/>
+            </LinearLayout>
+
+        <Switch
+            android:id="@+id/arduino2_holiday_mode"
+            android:layout_width="250dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+            android:layout_marginLeft="10dp"
+            android:text="Wakacje"
+            android:onClick="navigateSwitchHolidayMode"/>
+
+        <Switch
+            android:id="@+id/arduino2_twilight_mode"
+            android:layout_width="250dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+            android:layout_marginLeft="10dp"
+            android:text="Zamykaj rolety o zmierzchu"
+            android:onClick="navigateSwitchTwilightMode"/>
+
+        <Switch
+            android:id="@+id/arduino2_morning_mode"
+            android:layout_width="250dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+            android:layout_marginLeft="10dp"
+            android:text="Otwieraj rolety"
+            android:onClick="navigateTimePopup"/>
+
+        <TextView
+            android:id="@+id/arduino2_morning_time"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+            android:layout_marginLeft="30dp"
+            android:visibility="gone"/>
+        </LinearLayout>
+    </LinearLayout>
+
+
+</android.support.constraint.ConstraintLayout>

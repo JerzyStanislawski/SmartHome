@@ -18,7 +18,7 @@ namespace SmartHome
             return statusMap;
         }
 
-        public Settings parseAllSettingsResponse(string response)
+        public Model.Settings ParseAllSettingsResponse(string response)
         {
             var lines = response.Split("\r\n");
 
@@ -36,7 +36,7 @@ namespace SmartHome
             var morningTimeString = lines[6].Substring("morningTime: ".Length);
             var morningTime = DateTime.ParseExact(morningTimeString, "H:m", null);
 
-            return new Settings(dateTime, holidayMode, twilightMode, morningMode, morningTime.TimeOfDay, morningDaysMask);
+            return new Model.Settings(dateTime, holidayMode, twilightMode, morningMode, morningTime.TimeOfDay, morningDaysMask);
         }
 
         private bool ParseBoolValue(string line, string fieldName)

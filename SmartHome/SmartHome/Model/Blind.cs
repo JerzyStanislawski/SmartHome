@@ -1,6 +1,9 @@
-﻿namespace SmartHome.Model
+﻿using Android.Runtime;
+using System;
+
+namespace SmartHome.Model
 {
-    public class Blind
+    public class Blind : Java.Lang.Object, IJavaObject
     {
         public string Name { get; set; }
         public string NiceName { get; set; }

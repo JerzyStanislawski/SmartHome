@@ -1,6 +1,9 @@
-﻿namespace SmartHome.Model
+﻿using Android.Runtime;
+using System;
+
+namespace SmartHome.Model
 {
-    public class Light
+    public class Light : Java.Lang.Object
     {
         public string Name { get; set; }
         public int Output { get; set; }

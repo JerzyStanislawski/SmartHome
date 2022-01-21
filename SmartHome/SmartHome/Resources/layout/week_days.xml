@@ -1,0 +1,73 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_height="wrap_content"
+    android:layout_width="match_parent"
+    android:orientation="horizontal"
+    android:id="@+id/week_days">
+
+    <ToggleButton android:id="@+id/btn_monday"
+        android:layout_height="wrap_content"
+        android:layout_width="0dp"
+        android:layout_weight="0.15"
+        android:textSize="14sp"
+        android:textOn="Pn"
+        android:textOff="Pn"
+        android:checked="true"
+        />
+    <ToggleButton android:id="@+id/btn_tuesday"
+        android:layout_height="wrap_content"
+        android:layout_width="0dp"
+        android:layout_weight="0.15"
+        android:textSize="14sp"
+        android:textOn="Wt"
+        android:textOff="Wt"
+        android:checked="true"
+        />
+    <ToggleButton android:id="@+id/btn_wednesday"
+        android:layout_height="wrap_content"
+        android:layout_width="0dp"
+        android:layout_weight="0.15"
+        android:textSize="14sp"
+        android:textOn="Śr"
+        android:textOff="Śr"
+        android:checked="true"
+        />
+    <ToggleButton android:id="@+id/btn_thursday"
+        android:layout_height="wrap_content"
+        android:layout_width="0dp"
+        android:layout_weight="0.15"
+        android:textSize="14sp"
+        android:textOn="Cz"
+        android:textOff="Cz"
+        android:checked="true"
+        />
+    <ToggleButton android:id="@+id/btn_friday"
+        android:layout_height="wrap_content"
+        android:layout_width="0dp"
+        android:layout_weight="0.15"
+        android:textSize="14sp"
+        android:textOn="Pt"
+        android:textOff="Pt"
+        android:checked="true"
+        />
+    <ToggleButton android:id="@+id/btn_saturday"
+        android:layout_height="wrap_content"
+        android:layout_width="0dp"
+        android:layout_weight="0.15"
+        android:textSize="14sp"
+        android:textOn="So"
+        android:textOff="So"
+        android:checked="true"
+        />
+    <ToggleButton android:id="@+id/btn_sunday"
+        android:layout_height="wrap_content"
+        android:layout_width="0dp"
+        android:layout_weight="0.15"
+        android:textSize="14sp"
+        android:textOn="Nd"
+        android:textOff="Nd"
+        android:checked="true"
+        />
+
+</LinearLayout>

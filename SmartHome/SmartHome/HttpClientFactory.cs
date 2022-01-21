@@ -1,4 +1,5 @@
-﻿using System.Net.Http;
+﻿using System;
+using System.Net.Http;
 
 namespace SmartHome
 {
@@ -8,6 +9,7 @@ namespace SmartHome
         static HttpClientFactory()
         {
             _httpClient = new HttpClient();
+            _httpClient.Timeout = TimeSpan.FromSeconds(5);
         }
 
         public static HttpClient Get() => _httpClient;

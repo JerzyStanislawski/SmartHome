@@ -8,7 +8,7 @@ using AndroidX.AppCompat.App;
 using System.Net;
 using System.Net.Http;
 
-namespace SmartHome
+namespace SmartHome.Activities
 {
     [Activity(Label = "@string/app_name", Theme = "@style/AppTheme", MainLauncher = true)]
     public class MainActivity : AppCompatActivity
@@ -30,26 +30,26 @@ namespace SmartHome
 
         public void NavigateLightsGround(View _)
         {
-            //var intent = new Intent(this, typeof(LightsBasementActivity));
-            //StartActivity(intent);
+            var intent = new Intent(this, typeof(LightsGroundActivity));
+            StartActivity(intent);
         }
 
         public void NavigateLightsAttic(View _)
         {
-            //var intent = new Intent(this, typeof(LightsAtticActivity));
-            //StartActivity(intent);
+            var intent = new Intent(this, typeof(LightsAtticActivity));
+            StartActivity(intent);
         }
 
         public void NavigateBlindsGround(View _)
         {
-            //var intent = new Intent(this, typeof(BlindsBasementActivity));
-            //StartActivity(intent);
+            var intent = new Intent(this, typeof(BlindsGroundActivity));
+            StartActivity(intent);
         }
 
         public void NavigateBlindsAttic(View _)
         {
-            //var intent = new Intent(this, typeof(BlindsAtticActivity));
-            //StartActivity(intent);
+            var intent = new Intent(this, typeof(BlindsAtticActivity));
+            StartActivity(intent);
         }
 
         public void NavigateBlindsGroundUp(View view)

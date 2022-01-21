@@ -1,0 +1,167 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".scheduling.ScheduleEntityActivity"
+    android:orientation="vertical">
+
+    <LinearLayout
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
+        <RadioGroup android:id="@+id/toggleGroupType"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="24dp"
+            android:orientation="horizontal"
+            >
+            <ToggleButton android:id="@+id/btn_lights"
+                android:layout_height="wrap_content"
+                android:layout_width="fill_parent"
+                android:layout_weight="1"
+                android:textSize="14sp"
+                android:textOn="Oświetlenie"
+                android:textOff="Oświetlenie"
+                android:onClick="onToggleType"
+                android:checked="true"
+                />
+            <ToggleButton android:id="@+id/btn_blinds"
+                android:layout_height="wrap_content"
+                android:layout_width="fill_parent"
+                android:layout_weight="1"
+                android:textSize="14sp"
+                android:textOn="Roleta"
+                android:textOff="Roleta"
+                android:onClick="onToggleType"
+                />
+        </RadioGroup>
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/ligts_options"
+        android:layout_width="fill_parent"
+        android:layout_height="70dp"
+        android:orientation="horizontal"
+        android:visibility="visible"
+        android:gravity="center"
+        android:paddingTop="10dp">
+        <Switch android:id="@+id/lights_switch"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginHorizontal="10dp"
+            android:checked="true"/>
+        <TextView android:id="@+id/lights_text"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginHorizontal="10dp"
+            android:text="ON"/>
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/blinds_options"
+        android:layout_width="fill_parent"
+        android:layout_height="70dp"
+        android:orientation="horizontal"
+        android:visibility="gone"
+        android:gravity="center"
+        android:paddingTop="10dp">
+        <RadioGroup android:id="@+id/toggleGroupBlinds"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:orientation="horizontal">
+            <ToggleButton
+                android:id="@+id/blinds_up"
+                android:layout_width="48dp"
+                android:layout_height="48dp"
+                android:layout_marginHorizontal="10dp"
+                android:textOn="↑"
+                android:textOff="↑"
+                android:textSize="18dp"
+                android:textStyle="bold"
+                android:onClick="onToggleBlinds"
+                android:checked="true"/>
+            <ToggleButton
+                android:id="@+id/blinds_down"
+                android:layout_width="48dp"
+                android:layout_height="48dp"
+                android:layout_marginHorizontal="10dp"
+                android:textOn="↓"
+                android:textOff="↓"
+                android:textSize="18dp"
+                android:textStyle="bold"
+                android:onClick="onToggleBlinds"/>
+        </RadioGroup>
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:paddingTop="10dp">
+
+        <RadioGroup android:id="@+id/toggleGroupArea"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="24dp"
+            android:orientation="horizontal"
+            >
+
+            <ToggleButton android:id="@+id/btn_ground_floor"
+                android:layout_height="wrap_content"
+                android:layout_width="fill_parent"
+                android:layout_weight="1"
+                android:textSize="14sp"
+                android:textOn="Parter"
+                android:textOff="Parter"
+                android:onClick="onToggleArea"
+                android:checked="true"
+                />
+            <ToggleButton android:id="@+id/btn_attic"
+                android:layout_height="wrap_content"
+                android:layout_width="fill_parent"
+                android:layout_weight="1"
+                android:textSize="14sp"
+                android:textOn="Poddasze"
+                android:textOff="Poddasze"
+                android:onClick="onToggleArea"
+                />
+        </RadioGroup>
+    </LinearLayout>
+
+    <Spinner
+        android:id="@+id/room_spinner"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
+        android:textSize="14sp" />
+
+    <LinearLayout
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:paddingTop="10dp">
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Czas:"
+            android:layout_marginHorizontal="10dp"
+            android:layout_gravity="center"/>
+        <TimePicker
+            android:id="@+id/timePicker"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:timePickerMode="spinner"
+            android:layout_gravity="center"
+            android:layout_marginHorizontal="10dp"/>
+    </LinearLayout>
+
+    <include
+        android:id="@+id/schedule_week_days"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="10dp"
+        layout="@layout/week_days" />
+
+</LinearLayout>

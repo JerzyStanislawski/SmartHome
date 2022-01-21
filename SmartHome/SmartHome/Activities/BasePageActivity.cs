@@ -3,6 +3,7 @@ using Android.Content;
 using Android.OS;
 using Android.Views;
 using AndroidX.Core.App;
+using SmartHome.Settings;
 using System.Net.Http;
 
 namespace SmartHome.Activities
@@ -38,8 +39,8 @@ namespace SmartHome.Activities
                     //StartActivity(scheduleIntent);
                 return true;
             case Resource.Id.action_settings:
-                //var intent = new Intent(this, typeof(SettingsActivity));
-                //StartActivity(intent);
+                var intent = new Intent(this, typeof(SettingsActivity));
+                StartActivity(intent);
                 return true;
             default:
                 return base.OnOptionsItemSelected(item);

@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".scheduling.ScheduleActivity">
+
+        <ListView
+            android:id="@+id/scheduleList"
+            android:layout_width="fill_parent"
+            android:layout_height="match_parent"
+            android:layout_marginBottom="60dp"
+            />
+
+    <Button
+        android:id="@+id/buttonOK"
+        android:layout_width="120dp"
+        android:layout_height="48dp"
+        android:layout_marginLeft="10dp"
+        android:layout_marginRight="10dp"
+        android:layout_marginTop="10dp"
+        android:onClick="NavigateOK"
+        android:text="OK"
+        android:textSize="18dp"
+        android:textStyle="bold"
+        app:layout_constraintStart_toStartOf="@+id/scheduleList"
+        app:layout_constraintEnd_toStartOf="@+id/buttonWyczysc"
+        app:layout_constraintTop_toBottomOf="@id/scheduleList"/>
+
+    <Button
+        android:id="@+id/buttonWyczysc"
+        android:layout_width="120dp"
+        android:layout_height="48dp"
+        android:layout_marginLeft="10dp"
+        android:layout_marginRight="10dp"
+        android:layout_marginTop="10dp"
+        android:onClick="NavigateClear"
+        android:text="Wyczyść"
+        android:textSize="18dp"
+        android:textStyle="bold"
+        app:layout_constraintEnd_toEndOf="@+id/scheduleList"
+        app:layout_constraintStart_toEndOf="@+id/buttonOK"
+        app:layout_constraintTop_toBottomOf="@id/scheduleList"/>
+
+    <Button
+        android:layout_width="50dp"
+        android:layout_height="50dp"
+        android:background="@drawable/round_button"
+        android:gravity="center_vertical|center_horizontal"
+        android:onClick="NavigateAdd"
+        android:text="+"
+        android:textColor="#fff"
+        android:layout_marginRight="10dp"
+        android:layout_marginBottom="10dp"
+        app:layout_constraintEnd_toEndOf="@+id/scheduleList"
+        app:layout_constraintBottom_toBottomOf="@id/scheduleList" />
+
+</android.support.constraint.ConstraintLayout>

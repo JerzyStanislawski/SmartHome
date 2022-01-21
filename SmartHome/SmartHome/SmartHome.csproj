@@ -17,6 +17,7 @@
     <AndroidApplication>True</AndroidApplication>
     <AndroidResgenFile>Resources\Resource.designer.cs</AndroidResgenFile>
     <AndroidResgenClass>Resource</AndroidResgenClass>
+    <AndroidErrorOnCustomJavaObject>false</AndroidErrorOnCustomJavaObject>
     <GenerateSerializationAssemblies>Off</GenerateSerializationAssemblies>
     <AndroidUseLatestPlatformSdk>false</AndroidUseLatestPlatformSdk>
     <TargetFrameworkVersion>v12.0</TargetFrameworkVersion>
@@ -37,6 +38,7 @@
     <WarningLevel>4</WarningLevel>
     <AndroidUseSharedRuntime>True</AndroidUseSharedRuntime>
     <AndroidLinkMode>None</AndroidLinkMode>
+    <AndroidErrorOnCustomJavaObject>false</AndroidErrorOnCustomJavaObject>
     <EmbedAssembliesIntoApk>False</EmbedAssembliesIntoApk>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
@@ -49,6 +51,7 @@
     <WarningLevel>4</WarningLevel>
     <AndroidManagedSymbols>true</AndroidManagedSymbols>
     <AndroidUseSharedRuntime>False</AndroidUseSharedRuntime>
+    <AndroidErrorOnCustomJavaObject>false</AndroidErrorOnCustomJavaObject>
     <AndroidLinkMode>SdkOnly</AndroidLinkMode>
     <EmbedAssembliesIntoApk>True</EmbedAssembliesIntoApk>
   </PropertyGroup>
@@ -68,15 +71,27 @@
     <Compile Include="Activities\BlindsGroundActivity.cs" />
     <Compile Include="Activities\LightsAtticActivity.cs" />
     <Compile Include="Activities\LightsGroundActivity.cs" />
+    <Compile Include="Schedule\Area.cs" />
+    <Compile Include="Schedule\ScheduleActivity.cs" />
+    <Compile Include="Schedule\ScheduleAdapter.cs" />
+    <Compile Include="Schedule\ScheduleCommunication.cs" />
+    <Compile Include="Schedule\ScheduleEntity.cs" />
+    <Compile Include="Schedule\ScheduleEntityActivity.cs" />
+    <Compile Include="Schedule\ScheduleEntityHelpers.cs" />
+    <Compile Include="Schedule\ScheduleType.cs" />
+    <Compile Include="Settings\SettingsActivity.cs" />
     <Compile Include="ArduinoResponseParser.cs" />
-    <Compile Include="HttpTools.cs" />
-    <Compile Include="MainActivity.cs" />
+    <Compile Include="HttpClientFactory.cs" />
+    <Compile Include="Activities\MainActivity.cs" />
     <Compile Include="Model\Blind.cs" />
     <Compile Include="Model\Light.cs" />
     <Compile Include="Model\Settings.cs" />
     <Compile Include="Resources\Resource.designer.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="StaticData.cs" />
+    <Compile Include="Settings\TimePopupWindow.cs" />
+    <Compile Include="Settings\WeekDaysHelper.cs" />
+    <Compile Include="Settings\WeekDaysView.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Resources\AboutResources.txt" />
@@ -190,6 +205,37 @@
       <SubType>Designer</SubType>
     </AndroidResource>
   </ItemGroup>
+  <ItemGroup>
+    <AndroidResource Include="Resources\layout\activity_schedule.xml">
+      <SubType>Designer</SubType>
+    </AndroidResource>
+  </ItemGroup>
+  <ItemGroup>
+    <AndroidResource Include="Resources\layout\activity_schedule_entity.xml">
+      <SubType>Designer</SubType>
+    </AndroidResource>
+  </ItemGroup>
+  <ItemGroup>
+    <AndroidResource Include="Resources\layout\activity_settings.xml">
+      <SubType>Designer</SubType>
+    </AndroidResource>
+  </ItemGroup>
+  <ItemGroup>
+    <AndroidResource Include="Resources\layout\schedule_row.xml">
+      <SubType>Designer</SubType>
+    </AndroidResource>
+  </ItemGroup>
+  <ItemGroup>
+    <AndroidResource Include="Resources\layout\time_popup.xml">
+      <SubType>Designer</SubType>
+    </AndroidResource>
+  </ItemGroup>
+  <ItemGroup>
+    <AndroidResource Include="Resources\layout\week_days.xml">
+      <SubType>Designer</SubType>
+    </AndroidResource>
+  </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildExtensionsPath)\Xamarin\Android\Xamarin.Android.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it.
     Other similar extension points exist, see Microsoft.Common.targets.
