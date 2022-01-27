@@ -9,11 +9,11 @@ namespace SmartHome
         public IDictionary<int, bool> ParseLightsStatus(string response)
         {
             var statusMap = new Dictionary<int, bool>();
-            var lines = response.Split("\n");
+            var lines = response.TrimEnd().Split("\r\n");
             foreach (var line in lines)
             {
                 var lights = line.Split("=");
-                statusMap[int.Parse(lights[0])] = lights[1].Trim() == "1";
+                statusMap[int.Parse(lights[0])] = lights[1] == "1";
             }
             return statusMap;
         }

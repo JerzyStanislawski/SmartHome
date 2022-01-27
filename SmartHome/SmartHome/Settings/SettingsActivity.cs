@@ -3,13 +3,15 @@ using Android.Views;
 using Android.Widget;
 using System;
 using System.Collections.Generic;
-using SmartHome.Model;
 using System.Net.Http;
 using System.Threading.Tasks;
 using SmartHome.Activities;
+using Android.App;
 
 namespace SmartHome.Settings
 {
+    [Activity(Label = "SettingsActivity")]
+    [MetaData("android.support.PARENT_ACTIVITY", Value = "com.smarthome.MainActivity")]
     public class SettingsActivity : BasePageActivity
     {
         private readonly ArduinoResponseParser _responseParser = new ArduinoResponseParser();
@@ -168,6 +170,7 @@ namespace SmartHome.Settings
             RetrieveData(Resource.String.attic_host);
         }
 
+        [Java.Interop.Export("NavigateSwitchTwilightMode")]
         public void NavigateSwitchTwilightMode(View view)
         {
             var host = view.Id == Resource.Id.arduino1_twilight_mode
@@ -193,6 +196,7 @@ namespace SmartHome.Settings
             }
         }
 
+        [Java.Interop.Export("NavigateSwitchHolidayMode")]
         public void NavigateSwitchHolidayMode(View view)
         {
             var host = view.Id == Resource.Id.arduino1_holiday_mode 
@@ -217,6 +221,7 @@ namespace SmartHome.Settings
             }
         }
 
+        [Java.Interop.Export("NavigateUpdateTime")]
         public void NavigateUpdateTime(View view)
         {
             int host = view.Id == Resource.Id.arduino1_buttonUpdateTime 
@@ -235,6 +240,7 @@ namespace SmartHome.Settings
                 DisplayFailureMessage();
         }
 
+        [Java.Interop.Export("NavigateTimePopup")]
         public void NavigateTimePopup(View view)
         {
             Switch morningMode = (Switch)view;

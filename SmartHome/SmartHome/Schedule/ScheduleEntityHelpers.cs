@@ -51,7 +51,7 @@ namespace SmartHome.Schedule
             var niceName = type == ScheduleType.LIGHTS 
                 ? StaticData.LightNames[parts[0]] 
                 : StaticData.BlindNames[parts[0]];
-            var time = TimeSpan.ParseExact(parts[2], "H:m", null);
+            var time = TimeSpan.ParseExact(parts[2], "h\\:m", null);
             var daysMask = int.Parse(parts[3]);
             var onOrUp = parts[4] == "1";
             var area = type == ScheduleType.LIGHTS ? lightArea : blindArea;

@@ -2,14 +2,16 @@
 using Android.Content;
 using Android.OS;
 using Android.Views;
+using AndroidX.AppCompat.App;
 using AndroidX.Core.App;
+using SmartHome.Schedule;
 using SmartHome.Settings;
 using System.Net.Http;
 
 namespace SmartHome.Activities
 {
     [Activity(Label = "BasePageActivity")]
-    public class BasePageActivity : Activity
+    public class BasePageActivity : AppCompatActivity
     {
         protected HttpClient _httpClient;
 
@@ -17,17 +19,17 @@ namespace SmartHome.Activities
         {
             base.OnCreate(savedInstanceState);
 
-            _httpClient = HttpClientFactory.Get();
+            _httpClient = HttpClientFactory.Get();            
         }
 
         public override bool OnCreateOptionsMenu(IMenu menu)
         {
             MenuInflater.Inflate(Resource.Menu.toolbar_menu, menu);
-            return true;
+            return base.OnCreateOptionsMenu(menu);
         }
 
-        
-    public override bool OnOptionsItemSelected(IMenuItem item)
+
+        public override bool OnOptionsItemSelected(IMenuItem item)
         {
             switch (item.ItemId)
             {
@@ -35,16 +37,16 @@ namespace SmartHome.Activities
                     NavUtils.NavigateUpFromSameTask(this);
                     return true;
                 case Resource.Id.action_schedule:
-                    //var scheduleIntent = new Intent(this, typeof(ScheduleActivity));
-                    //StartActivity(scheduleIntent);
-                return true;
-            case Resource.Id.action_settings:
-                var intent = new Intent(this, typeof(SettingsActivity));
-                StartActivity(intent);
-                return true;
-            default:
-                return base.OnOptionsItemSelected(item);
+                    var scheduleIntent = new Intent(this, typeof(ScheduleActivity));
+                    StartActivity(scheduleIntent);
+                    return true;
+                case Resource.Id.action_settings:
+                    var intent = new Intent(this, typeof(SettingsActivity));
+                    StartActivity(intent);
+                    return true;
+                default:
+                    return base.OnOptionsItemSelected(item);
+            }
         }
-}
     }
 }

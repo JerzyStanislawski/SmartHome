@@ -5,15 +5,15 @@ using Android.Runtime;
 using Android.Views;
 using Android.Widget;
 using AndroidX.AppCompat.App;
+using Java.Interop;
 using System.Net;
 using System.Net.Http;
 
 namespace SmartHome.Activities
 {
     [Activity(Label = "@string/app_name", Theme = "@style/AppTheme", MainLauncher = true)]
-    public class MainActivity : AppCompatActivity
+    public class MainActivity : BasePageActivity
     {
-        HttpClient _httpClient = HttpClientFactory.Get();
         protected override void OnCreate(Bundle savedInstanceState)
         {
             base.OnCreate(savedInstanceState);
@@ -21,6 +21,7 @@ namespace SmartHome.Activities
             // Set our view from the "main" layout resource
             SetContentView(Resource.Layout.activity_main);
         }
+
         public override void OnRequestPermissionsResult(int requestCode, string[] permissions, [GeneratedEnum] Android.Content.PM.Permission[] grantResults)
         {
             Xamarin.Essentials.Platform.OnRequestPermissionsResult(requestCode, permissions, grantResults);
@@ -28,31 +29,36 @@ namespace SmartHome.Activities
             base.OnRequestPermissionsResult(requestCode, permissions, grantResults);
         }
 
+        [Export("NavigateLightsGround")]
         public void NavigateLightsGround(View _)
         {
             var intent = new Intent(this, typeof(LightsGroundActivity));
             StartActivity(intent);
         }
 
+        [Export("NavigateLightsAttic")]
         public void NavigateLightsAttic(View _)
         {
             var intent = new Intent(this, typeof(LightsAtticActivity));
             StartActivity(intent);
         }
 
+        [Export("NavigateBlindsGround")]
         public void NavigateBlindsGround(View _)
         {
             var intent = new Intent(this, typeof(BlindsGroundActivity));
             StartActivity(intent);
         }
 
+        [Export("NavigateBlindsAttic")]
         public void NavigateBlindsAttic(View _)
         {
             var intent = new Intent(this, typeof(BlindsAtticActivity));
             StartActivity(intent);
         }
 
-        public void NavigateBlindsGroundUp(View view)
+        [Export("NavigateBlindsGroundUp")]
+        public void NavigateBlindsGroundUp(View _)
         {
             var host = GetString(Resource.String.ground_host);
             var url = $"http://{host}/impulsRolety";
@@ -60,7 +66,8 @@ namespace SmartHome.Activities
             NotifyOnFailure(responseCode);
         }
 
-        public void NavigateBlindsGroundDown(View view)
+        [Export("NavigateBlindsGroundDown")]
+        public void NavigateBlindsGroundDown(View _)
         {
             var host = GetString(Resource.String.attic_host);
             var url = $"http://{host}/impulsRolety";
@@ -68,7 +75,8 @@ namespace SmartHome.Activities
             NotifyOnFailure(responseCode);
         }
 
-        public void NavigateBlindsAtticUp(View view)
+        [Export("NavigateBlindsAtticUp")]
+        public void NavigateBlindsAtticUp(View _)
         {
             var host = GetString(Resource.String.ground_host);
             var url = $"http://{host}/impulsRolety";
@@ -76,7 +84,8 @@ namespace SmartHome.Activities
             NotifyOnFailure(responseCode);
         }
 
-        public void NavigateBlindsAtticDown(View view)
+        [Export("NavigateBlindsAtticDown")]
+        public void NavigateBlindsAtticDown(View _)
         {
             var host = GetString(Resource.String.ground_host);
             var url = $"http://{host}/impulsRolety";
@@ -84,7 +93,8 @@ namespace SmartHome.Activities
             NotifyOnFailure(responseCode);
         }
 
-        public void NavigateLightsGroundOff(View view)
+        [Export("NavigateLightsGroundOff")]
+        public void NavigateLightsGroundOff(View _)
         {
             var host = GetString(Resource.String.ground_host);
             var url = $"http://{host}/impulsOswietlenie";
@@ -92,7 +102,8 @@ namespace SmartHome.Activities
             NotifyOnFailure(responseCode);
         }
 
-        public void NavigateLightsAtticOff(View view)
+        [Export("NavigateLightsAtticOff")]
+        public void NavigateLightsAtticOff(View _)
         {
             var host = GetString(Resource.String.attic_host);
             var url = $"http://{host}/impulsOswietlenie";

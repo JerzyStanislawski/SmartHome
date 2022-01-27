@@ -6,12 +6,12 @@ namespace SmartHome
 {
     public class StaticData
     {
-        public static Dictionary<int, Light> GroundLights { get; set; }
-        public static Dictionary<int, Light> AtticLights { get; set; }
-        public static Dictionary<int, Blind> GroundBlinds { get; set; }
-        public static Dictionary<int, Blind> AtticBlinds { get; set; }
-        public static Dictionary<string, string> LightNames { get; set; }
-        public static Dictionary<string, string> BlindNames { get; set; }
+        public static Dictionary<int, Light> GroundLights { get; private set; } = new Dictionary<int, Light>();
+        public static Dictionary<int, Light> AtticLights { get; private set; } = new Dictionary<int, Light>();
+        public static Dictionary<int, Blind> GroundBlinds { get; private set; } = new Dictionary<int, Blind>();
+        public static Dictionary<int, Blind> AtticBlinds { get; private set; } = new Dictionary<int, Blind>();
+        public static Dictionary<string, string> LightNames { get; private set; }
+        public static Dictionary<string, string> BlindNames { get; private set; }
 
         static StaticData()
         {

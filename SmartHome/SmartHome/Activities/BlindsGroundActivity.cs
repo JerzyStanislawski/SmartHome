@@ -6,6 +6,7 @@ using System.Collections.Generic;
 namespace SmartHome.Activities
 {
     [Activity(Label = "BlindsGroundActivity")]
+    [MetaData("android.support.PARENT_ACTIVITY", Value = "com.smarthome.MainActivity")]
     public class BlindsGroundActivity : BaseBlindsActivity
     {
 

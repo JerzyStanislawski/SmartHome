@@ -36,7 +36,7 @@ namespace SmartHome.Schedule
                 }
                 if (timeTextView != null)
                 {
-                    timeTextView.Text = entity.Time.ToString("HH:mm");
+                    timeTextView.Text = entity.Time.ToString("hh\\:mm");
                 }
 
                 var icon = (ImageView)v.FindViewById(Resource.Id.rowIcon);

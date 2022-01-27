@@ -5,13 +5,14 @@ using Android.Runtime;
 using Android.Views;
 using Android.Widget;
 using SmartHome.Activities;
-using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text;
+using System.Threading.Tasks;
 
 namespace SmartHome.Schedule
 {
+    [Activity(Label = "ScheduleActivity")]
+    [MetaData("android.support.PARENT_ACTIVITY", Value = "com.smarthome.MainActivity")]
     public class ScheduleActivity : BasePageActivity
     {
         List<ScheduleEntity> _entities;
@@ -27,13 +28,13 @@ namespace SmartHome.Schedule
         public const int RESULT_CODE_BACK = 1;
         public const int RESULT_CODE_REMOVE = 2;
 
-        protected override void OnCreate(Bundle savedInstanceState)
+        protected override async void OnCreate(Bundle savedInstanceState)
         {
             base.OnCreate(savedInstanceState);
             SetContentView(Resource.Layout.activity_schedule);
 
             _communicationHandler = new ScheduleCommunication(this.ApplicationContext);
-            RetrieveData();
+            await RetrieveData();
 
             var list = (ListView)FindViewById(Resource.Id.scheduleList);
             list.Adapter = _adapter;
@@ -42,7 +43,7 @@ namespace SmartHome.Schedule
             list.OnItemClickListener = new ClickListener(this);
         }
 
-        private async void RetrieveData()
+        private async Task RetrieveData()
         {
             _entities = (await _communicationHandler.RetrieveData()).ToList();
             _adapter = new ScheduleAdapter(this, Resource.Layout.schedule_row, _entities.ToArray());
@@ -50,6 +51,7 @@ namespace SmartHome.Schedule
             _currentId = _entities.Count;
         }
 
+        [Java.Interop.Export("NavigateOK")]
         public async void NavigateOK(View _)
         {
             if (await _communicationHandler.SendData(_entities) == false)
@@ -58,12 +60,14 @@ namespace SmartHome.Schedule
                 Finish();
         }
 
+        [Java.Interop.Export("NavigateAdd")]
         public void NavigateAdd(View _)
         {
             Intent intent = new Intent(this, typeof(ScheduleEntityActivity));
             StartActivityForResult(intent, REQUEST_CODE_ADD_ENTITY);
         }
 
+        [Java.Interop.Export("NavigateClear")]
         public void NavigateClear(View _)
         {
             _entities.Clear();
@@ -74,7 +78,7 @@ namespace SmartHome.Schedule
         protected override void OnActivityResult(int requestCode, [GeneratedEnum] Result resultCode, Intent data)
         {
             base.OnActivityResult(requestCode, resultCode, data);
-            if (((int)resultCode) == RESULT_CODE_BACK)
+            if (resultCode == Result.Canceled)
                 return;
 
             if ((int)resultCode == RESULT_CODE_REMOVE)
@@ -88,7 +92,7 @@ namespace SmartHome.Schedule
                 return;
             }
 
-            if (resultCode == RESULT_CODE_OK)
+            if (resultCode == Result.Ok)
             {
                 if (requestCode == REQUEST_CODE_ADD_ENTITY)
                 {

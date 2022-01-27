@@ -6,6 +6,7 @@ using System.Collections.Generic;
 namespace SmartHome.Activities
 {
     [Activity(Label = "LightsAtticActivity")]
+    [MetaData("android.support.PARENT_ACTIVITY", Value = "com.smarthome.MainActivity")]
     public class LightsAtticActivity : BaseLightsActivity
     {
 

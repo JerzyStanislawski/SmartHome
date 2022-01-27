@@ -23,7 +23,7 @@
                 android:textSize="14sp"
                 android:textOn="Oświetlenie"
                 android:textOff="Oświetlenie"
-                android:onClick="onToggleType"
+                android:onClick="OnToggleType"
                 android:checked="true"
                 />
             <ToggleButton android:id="@+id/btn_blinds"
@@ -33,7 +33,7 @@
                 android:textSize="14sp"
                 android:textOn="Roleta"
                 android:textOff="Roleta"
-                android:onClick="onToggleType"
+                android:onClick="OnToggleType"
                 />
         </RadioGroup>
     </LinearLayout>
@@ -80,7 +80,7 @@
                 android:textOff="↑"
                 android:textSize="18dp"
                 android:textStyle="bold"
-                android:onClick="onToggleBlinds"
+                android:onClick="OnToggleBlinds"
                 android:checked="true"/>
             <ToggleButton
                 android:id="@+id/blinds_down"
@@ -91,7 +91,7 @@
                 android:textOff="↓"
                 android:textSize="18dp"
                 android:textStyle="bold"
-                android:onClick="onToggleBlinds"/>
+                android:onClick="OnToggleBlinds"/>
         </RadioGroup>
     </LinearLayout>
 
@@ -115,7 +115,7 @@
                 android:textSize="14sp"
                 android:textOn="Parter"
                 android:textOff="Parter"
-                android:onClick="onToggleArea"
+                android:onClick="OnToggleArea"
                 android:checked="true"
                 />
             <ToggleButton android:id="@+id/btn_attic"
@@ -125,7 +125,7 @@
                 android:textSize="14sp"
                 android:textOn="Poddasze"
                 android:textOff="Poddasze"
-                android:onClick="onToggleArea"
+                android:onClick="OnToggleArea"
                 />
         </RadioGroup>
     </LinearLayout>

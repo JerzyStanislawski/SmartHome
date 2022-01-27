@@ -44,7 +44,7 @@ namespace SmartHome.Schedule
                 var content = await response.Content.ReadAsStringAsync();
                 if (!String.IsNullOrEmpty(content))
                 {
-                    var lines = content.Split(";\r\n");
+                    var lines = content.TrimEnd().Split(";\r\n");
                     int i = entities.Count();
                     foreach (var line in lines)
                     {

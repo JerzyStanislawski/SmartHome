@@ -8,12 +8,12 @@ using SmartHome.Activities;
 using SmartHome.Model;
 using SmartHome.Settings;
 using System;
-using System.Collections.Generic;
 using System.Linq;
-using System.Text;
 
 namespace SmartHome.Schedule
 {
+    [Activity(Label = "ScheduleEntityActivity")]
+    [MetaData("android.support.PARENT_ACTIVITY", Value = "com.smarthome.ScheduleActivity")]
     public class ScheduleEntityActivity : BasePageActivity
     {
         ArrayAdapter<object> _spinnerAdapter;
@@ -216,6 +216,7 @@ namespace SmartHome.Schedule
             ((RadioGroup)view.Parent).Check(view.Id);
         }
 
+        [Java.Interop.Export("OnToggleType")]
         public void OnToggleType(View view)
         {
             HandleToggling(view);
@@ -236,12 +237,14 @@ namespace SmartHome.Schedule
             SetSpinnerData();
         }
 
+        [Java.Interop.Export("OnToggleArea")]
         public void OnToggleArea(View view)
         {
             HandleToggling(view);
             SetSpinnerData();
         }
 
+        [Java.Interop.Export("OnToggleBlinds")]
         public void OnToggleBlinds(View view)
         {
             HandleToggling(view);

@@ -13,5 +13,7 @@ namespace SmartHome.Model
             Name = name;
             NiceName = niceName;
         }
+
+        public override string ToString() => NiceName;
     }
 }

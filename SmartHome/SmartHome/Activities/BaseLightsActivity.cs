@@ -22,7 +22,7 @@ namespace SmartHome.Activities
 
         public void UpdateState()
         {
-            var response = _httpClient.GetAsync("http://" + GetHost() + "/getStatus").Result;
+            var response = _httpClient.GetAsync($"http://{GetHost()}/getStatus").Result;
             if (response.IsSuccessStatusCode)
             {
                 var content = response.Content.ReadAsStringAsync().Result;
@@ -38,9 +38,9 @@ namespace SmartHome.Activities
         private void UpdateSwitches(IDictionary<int, bool> state)
         {
             _updatingStatus = true;
-            foreach (var (switchKey, switchValue) in state)
+            foreach (var (switchKey, switchValue) in _switches)
             {
-                Switch sButton = (Switch)FindViewById(switchKey);
+                 var sButton = (Switch)FindViewById(switchKey);
 
                 int lightId = _switches[switchKey].Output;
                 if (state.ContainsKey(lightId))
@@ -61,7 +61,7 @@ namespace SmartHome.Activities
 
             foreach (var (switchKey, switchValue) in _switches)
             {
-                Switch sButton = (Switch)FindViewById(switchKey);
+                var sButton = (Switch)FindViewById(switchKey);
                 sButton.SetOnCheckedChangeListener(new ChangeListener(this, switchValue));
             }
         }
@@ -92,7 +92,7 @@ namespace SmartHome.Activities
                     return;
 
                 var responseCode = _activity._httpClient.PostAsync($"http://{_activity.GetHost()}/impulsOswietlenie",
-                    new StringContent(_light.Name + "=" + buttonView.Checked)).Result.StatusCode;
+                    new StringContent($"{_light.Name}={buttonView.Checked.ToString().ToLowerInvariant()}")).Result.StatusCode;
 
                 if (responseCode != HttpStatusCode.OK)
                 {
