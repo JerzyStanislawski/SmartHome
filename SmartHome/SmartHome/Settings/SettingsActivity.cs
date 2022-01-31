@@ -10,8 +10,7 @@ using Android.App;
 
 namespace SmartHome.Settings
 {
-    [Activity(Label = "SettingsActivity")]
-    [MetaData("android.support.PARENT_ACTIVITY", Value = "com.smarthome.MainActivity")]
+    [Activity(Label = "@string/app_name", Theme = "@style/AppTheme", ParentActivity = typeof(MainActivity))]
     public class SettingsActivity : BasePageActivity
     {
         private readonly ArduinoResponseParser _responseParser = new ArduinoResponseParser();
@@ -27,10 +26,12 @@ namespace SmartHome.Settings
             _controls[Resource.String.attic_host] = new UIControls(Resource.Id.arduino2_ping, Resource.Id.arduino2_time, Resource.Id.arduino2_data, Resource.Id.arduino2_holiday_mode, Resource.Id.arduino2_twilight_mode, Resource.Id.arduino2_morning_mode, Resource.Id.arduino2_morning_time);
 
             var textArduino1 = (TextView)FindViewById(Resource.Id.arduino1_caption);
-            textArduino1.Text = $"Arduino 1 - {Resource.String.ground_host}";
+            textArduino1.Text = $"Arduino 1 - {GetString(Resource.String.ground_host)}";
 
             var textArduino2 = (TextView)FindViewById(Resource.Id.arduino2_caption);
-            textArduino2.SetText("Arduino 2 - " + Resource.String.attic_host, TextView.BufferType.Normal);
+            textArduino2.Text = $"Arduino 2 - {GetString(Resource.String.attic_host)}";
+
+            EnableButtons(false);
 
             RetrieveData(Resource.String.ground_host);
             RetrieveData(Resource.String.attic_host);
@@ -38,13 +39,16 @@ namespace SmartHome.Settings
 
         void DisplayError(string response, int host)
         {
-            var controls = _controls[host];
+            RunOnUiThread(() =>
+            {
+                var controls = _controls[host];
 
-            var layout = (LinearLayout)FindViewById(controls.IdLayout);
-            layout.Visibility = ViewStates.Invisible;
+                var layout = (LinearLayout)FindViewById(controls.IdLayout);
+                layout.Visibility = ViewStates.Invisible;
 
-            var pingText = (TextView)FindViewById(controls.IdPing);
-            pingText.Text = response;
+                var pingText = (TextView)FindViewById(controls.IdPing);
+                pingText.Text = response;
+            });
         }
 
         private void UpdateData(Model.Settings settings, long duration, int host)
@@ -66,7 +70,7 @@ namespace SmartHome.Settings
 
             if (settings.MorningMode)
             {
-                TextView morningText = (TextView)FindViewById(controls.IdMorningText);
+                var morningText = (TextView)FindViewById(controls.IdMorningText);
                 SetMorningText(morningText, settings.MorningTime, WeekDaysHelper.WeekDaysFromMask(settings.MorningDays));
                 morningText.Visibility = ViewStates.Visible;
             }
@@ -74,7 +78,7 @@ namespace SmartHome.Settings
 
         private void SetMorningText(TextView morningText, TimeSpan morningTime, IEnumerable<DayOfWeek> morningDays)
         {
-            var time = morningTime.ToString("HH:mm");
+            var time = morningTime.ToString("hh\\:mm");
             time += ": ";
 
             foreach (var weekDay in morningDays)
@@ -105,7 +109,7 @@ namespace SmartHome.Settings
                 }
             }
 
-            time = time.Substring(0, time.Length - 2);
+            time = time[0..^2];
             morningText.Text = time;
         }
 
@@ -128,18 +132,27 @@ namespace SmartHome.Settings
             })
             .ContinueWith(async task =>
             {
-                var response = task.Result.response;
-                var content = await response.Content.ReadAsStringAsync();
-                
-                if (!response.IsSuccessStatusCode)
+                if (task.IsCompletedSuccessfully)
                 {
-                    DisplayError(content, host);
+                    var response = task.Result.response;
+                    var content = await response.Content.ReadAsStringAsync();
+
+                    if (!response.IsSuccessStatusCode)
+                    {
+                        DisplayError(content, host);
+                    }
+                    else
+                    {
+                        var settings = _responseParser.ParseAllSettingsResponse(content);
+                        RunOnUiThread(() =>
+                        {
+                            UpdateData(settings, task.Result.ElapsedMilliseconds, host);
+                            EnableButtons(true);
+                        });
+                    }
                 }
                 else
-                {
-                    var settings = _responseParser.ParseAllSettingsResponse(content);
-                    UpdateData(settings, task.Result.ElapsedMilliseconds, host);
-                }
+                    DisplayError(GetString(Resource.String.connection_failure_message), host);
             });
         }
 
@@ -296,6 +309,27 @@ namespace SmartHome.Settings
                 }));
         }
 
+        private void EnableButtons(bool enable)
+        {
+            EnableButtons(enable, Resource.String.ground_host);
+            EnableButtons(enable, Resource.String.attic_host);
+
+            FindViewById<Button>(Resource.Id.arduino1_buttonUpdateTime).Enabled = enable;
+            FindViewById<Button>(Resource.Id.arduino2_buttonUpdateTime).Enabled = enable;
+        }
+
+        private void EnableButtons(bool enable, int host)
+        {
+            FindViewById<Switch>(_controls[host].IdMorningMode).Enabled = enable;
+            FindViewById<Switch>(_controls[host].IdTwilightMode).Enabled = enable;
+            FindViewById<Switch>(_controls[host].IdHolidayMode).Enabled = enable;
+        }
+
+        private void DisplayFailureMessage()
+        {
+            Toast.MakeText(this.ApplicationContext, Resource.String.connection_failure_message, ToastLength.Short);
+        }
+
         private class ClickListener : Java.Lang.Object, View.IOnClickListener
         {
             private readonly TimePopupWindow _timePopupWindow;
@@ -315,9 +349,8 @@ namespace SmartHome.Settings
 
             public void OnClick(View v)
             {
-                var parameters = String.Format("true;days=%3d;time=%s",
-                    WeekDaysHelper.GetDaysMask(_timePopupWindow.GetSelectedDays()),
-                    _timePopupWindow.GetTime().ToString("HH:mm"));
+                var parameters = $"true;days={WeekDaysHelper.GetDaysMask(_timePopupWindow.GetSelectedDays()):D3};time={_timePopupWindow.GetTime().ToString("hh\\:mm")}";
+
                 if (!_httpClient.PostAsync(_url, new StringContent(parameters)).Result.IsSuccessStatusCode)
                 {
                     _onFailure();
@@ -327,11 +360,6 @@ namespace SmartHome.Settings
                     _onSuccess();
                 }
             }
-        }
-
-        private void DisplayFailureMessage()
-        {
-            Toast.MakeText(this.ApplicationContext, Resource.String.connection_failure_message, ToastLength.Short);
         }
 
         private class UIControls

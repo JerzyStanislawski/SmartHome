@@ -1,16 +1,10 @@
-﻿using Android.App;
-using Android.Content;
-using Android.OS;
-using Android.Runtime;
-using Android.Views;
+﻿using Android.Views;
 using Android.Widget;
 using SmartHome.Model;
-using System;
 using System.Collections.Generic;
-using System.Linq;
 using System.Net;
 using System.Net.Http;
-using System.Text;
+using System.Threading.Tasks;
 
 namespace SmartHome.Activities
 {
@@ -46,14 +40,28 @@ namespace SmartHome.Activities
 
             public void OnClick(View v)
             {
-                var responseCode = _activity._httpClient.PostAsync($"http://{_activity.GetHost()}/impulsRolety",
-                    new StringContent(_blind.Name)).Result.StatusCode;
-
-                if (responseCode != HttpStatusCode.OK)
+                Task.Run(async () =>
                 {
-                    Toast.MakeText(this._activity.ApplicationContext,
-                        $"{Resource.String.arduino_response_message}{responseCode}", ToastLength.Short).Show();
-                }
+                    HttpStatusCode responseCode;
+                    try
+                    {
+                        responseCode = (await _activity._httpClient.PostAsync($"http://{_activity.GetHost()}/impulsRolety",
+                            new StringContent(_blind.Name))).StatusCode;
+                    }
+                    catch
+                    {
+                        responseCode = HttpStatusCode.InternalServerError;
+                    }
+
+                    if (responseCode != HttpStatusCode.OK)
+                    {
+                        _activity.RunOnUiThread(() =>
+                        {
+                            Toast.MakeText(_activity.ApplicationContext,
+                                $"{_activity.GetString(Resource.String.arduino_response_message)}{responseCode}", ToastLength.Short).Show();
+                        });
+                    }
+                });
             }
         }
     }

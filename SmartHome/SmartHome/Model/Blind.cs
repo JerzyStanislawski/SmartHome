@@ -15,5 +15,14 @@ namespace SmartHome.Model
         }
 
         public override string ToString() => NiceName;
+
+        public override bool Equals(object obj)
+        {
+            if (!(obj is Blind))
+                return false;
+
+            var blind = (Blind)obj;
+            return Name == blind.Name && NiceName == blind.NiceName;
+        }
     }
 }

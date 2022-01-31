@@ -4,10 +4,10 @@ using Android.OS;
 using Android.Runtime;
 using Android.Views;
 using Android.Widget;
-using AndroidX.AppCompat.App;
 using Java.Interop;
 using System.Net;
 using System.Net.Http;
+using System.Threading.Tasks;
 
 namespace SmartHome.Activities
 {
@@ -60,63 +60,67 @@ namespace SmartHome.Activities
         [Export("NavigateBlindsGroundUp")]
         public void NavigateBlindsGroundUp(View _)
         {
-            var host = GetString(Resource.String.ground_host);
-            var url = $"http://{host}/impulsRolety";
-            var responseCode = _httpClient.PostAsync(url, new StringContent("allRoletyUp")).Result.StatusCode;
-            NotifyOnFailure(responseCode);
+            PostRequest(Resource.String.ground_host, "impulsRolety", "allRoletyUp");
         }
 
         [Export("NavigateBlindsGroundDown")]
         public void NavigateBlindsGroundDown(View _)
         {
-            var host = GetString(Resource.String.attic_host);
-            var url = $"http://{host}/impulsRolety";
-            var responseCode = _httpClient.PostAsync(url, new StringContent("allRoletyDown")).Result.StatusCode;
-            NotifyOnFailure(responseCode);
+            PostRequest(Resource.String.ground_host, "impulsRolety", "allRoletyDown");
         }
 
         [Export("NavigateBlindsAtticUp")]
         public void NavigateBlindsAtticUp(View _)
         {
-            var host = GetString(Resource.String.ground_host);
-            var url = $"http://{host}/impulsRolety";
-            var responseCode = _httpClient.PostAsync(url, new StringContent("allRoletyUp")).Result.StatusCode;
-            NotifyOnFailure(responseCode);
+            PostRequest(Resource.String.attic_host, "impulsRolety", "allRoletyUp");
         }
 
         [Export("NavigateBlindsAtticDown")]
         public void NavigateBlindsAtticDown(View _)
         {
-            var host = GetString(Resource.String.ground_host);
-            var url = $"http://{host}/impulsRolety";
-            var responseCode = _httpClient.PostAsync(url, new StringContent("allRoletyDown")).Result.StatusCode;
-            NotifyOnFailure(responseCode);
+            PostRequest(Resource.String.attic_host, "impulsRolety", "allRoletyDown");
         }
 
         [Export("NavigateLightsGroundOff")]
         public void NavigateLightsGroundOff(View _)
         {
-            var host = GetString(Resource.String.ground_host);
-            var url = $"http://{host}/impulsOswietlenie";
-            var responseCode = _httpClient.PostAsync(url, new StringContent("allOff=0")).Result.StatusCode;
-            NotifyOnFailure(responseCode);
+            PostRequest(Resource.String.ground_host, "impulsOswietlenie", "allOff=0");
         }
 
         [Export("NavigateLightsAtticOff")]
         public void NavigateLightsAtticOff(View _)
         {
-            var host = GetString(Resource.String.attic_host);
-            var url = $"http://{host}/impulsOswietlenie";
-            var responseCode = _httpClient.PostAsync(url, new StringContent("allOff=0")).Result.StatusCode;
-            NotifyOnFailure(responseCode);
+            PostRequest(Resource.String.attic_host, "impulsOswietlenie", "allOff=0");
+        }
+
+        private void PostRequest(int host, string relativeUrl, string payload)
+        {
+            var hostAddress = GetString(host);
+            var url = $"http://{hostAddress}/{relativeUrl}";
+            Task.Run(async () =>
+            {
+                HttpStatusCode responseCode;
+                try
+                {
+                    responseCode = (await _httpClient.PostAsync(url, new StringContent("allOff=0"))).StatusCode;
+                }
+                catch
+                {
+                    responseCode = HttpStatusCode.InternalServerError;
+                }
+                NotifyOnFailure(responseCode);
+            });
         }
 
         private void NotifyOnFailure(HttpStatusCode responseCode)
         {
-            if (responseCode != HttpStatusCode.OK)
+            RunOnUiThread(() =>
             {
-                Toast.MakeText(ApplicationContext, $"Odpowiedź z rodzielni: {responseCode}", ToastLength.Short).Show();
-            }
+                if (responseCode != HttpStatusCode.OK)
+                {
+                    Toast.MakeText(ApplicationContext, $"Odpowiedź z rodzielni: {responseCode}", ToastLength.Short).Show();
+                }
+            });
         }
     }
 }

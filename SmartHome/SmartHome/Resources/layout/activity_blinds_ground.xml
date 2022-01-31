@@ -4,7 +4,8 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".BlindsGroundActivity">
+    tools:context=".BlindsGroundActivity"
+    android:id="@+id/root_blinds_ground">
 
     <TextView
         android:id="@+id/textViewSalon"

@@ -54,7 +54,7 @@ namespace SmartHome.Schedule
             }
             else
             {
-                Toast.MakeText(_applicationContext, Resource.String.connection_failure_message, ToastLength.Short).Show();
+                throw new HttpRequestException("GetScheduledEvents error");
             }
         }
 

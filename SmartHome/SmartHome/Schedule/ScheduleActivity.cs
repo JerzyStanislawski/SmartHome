@@ -4,6 +4,7 @@ using Android.OS;
 using Android.Runtime;
 using Android.Views;
 using Android.Widget;
+using AndroidX.ConstraintLayout.Widget;
 using SmartHome.Activities;
 using System.Collections.Generic;
 using System.Linq;
@@ -11,8 +12,7 @@ using System.Threading.Tasks;
 
 namespace SmartHome.Schedule
 {
-    [Activity(Label = "ScheduleActivity")]
-    [MetaData("android.support.PARENT_ACTIVITY", Value = "com.smarthome.MainActivity")]
+    [Activity(Label = "@string/app_name", Theme = "@style/AppTheme", ParentActivity = typeof(MainActivity))]
     public class ScheduleActivity : BasePageActivity
     {
         List<ScheduleEntity> _entities;
@@ -24,29 +24,41 @@ namespace SmartHome.Schedule
         public const int REQUEST_CODE_ADD_ENTITY = 0;
         public const int REQUEST_CODE_EDIT_ENTITY = 1;
 
-        public const int RESULT_CODE_OK = 0;
-        public const int RESULT_CODE_BACK = 1;
         public const int RESULT_CODE_REMOVE = 2;
 
-        protected override async void OnCreate(Bundle savedInstanceState)
+        protected override void OnCreate(Bundle savedInstanceState)
         {
             base.OnCreate(savedInstanceState);
             SetContentView(Resource.Layout.activity_schedule);
 
+            EnableButtons(false);
+
             _communicationHandler = new ScheduleCommunication(this.ApplicationContext);
-            await RetrieveData();
+            Task.Run(async () => await RetrieveData())
+                .ContinueWith(task =>
+                {
+                    RunOnUiThread(() =>
+                    {
+                        if (task.IsCompletedSuccessfully)
+                        {
+                            var list = (ListView)FindViewById(Resource.Id.scheduleList);
+                            list.Adapter = _adapter;
 
-            var list = (ListView)FindViewById(Resource.Id.scheduleList);
-            list.Adapter = _adapter;
+                            list.Clickable = true;
+                            list.OnItemClickListener = new ClickListener(this);
 
-            list.Clickable = true;
-            list.OnItemClickListener = new ClickListener(this);
+                            EnableButtons(true);
+                        }
+                        else
+                            Toast.MakeText(ApplicationContext, Resource.String.connection_failure_message, ToastLength.Short).Show();
+                    });
+                });
         }
 
         private async Task RetrieveData()
         {
             _entities = (await _communicationHandler.RetrieveData()).ToList();
-            _adapter = new ScheduleAdapter(this, Resource.Layout.schedule_row, _entities.ToArray());
+            _adapter = new ScheduleAdapter(this, Resource.Layout.schedule_row, _entities);
 
             _currentId = _entities.Count;
         }
@@ -87,9 +99,6 @@ namespace SmartHome.Schedule
 
                 var entity = _entities.FirstOrDefault(x => x.Id == id);
                 _entities.Remove(entity);
-
-                _adapter.NotifyDataSetChanged();
-                return;
             }
 
             if (resultCode == Result.Ok)
@@ -99,7 +108,7 @@ namespace SmartHome.Schedule
                     data.PutExtra("id", _currentId++);
                 }
 
-                ScheduleEntity entity = ScheduleEntityHelpers.CreateFromIntent(data);
+                var entity = ScheduleEntityHelpers.CreateFromIntent(data);
 
                 if (requestCode == REQUEST_CODE_ADD_ENTITY)
                 {
@@ -111,8 +120,23 @@ namespace SmartHome.Schedule
                     int index = _entities.IndexOf(entityToReplace);
                     _entities[index] = entity;
                 }
+            }
 
-                _adapter.NotifyDataSetChanged();
+            _adapter.Clear();
+            _adapter.AddAll(_entities);
+            _adapter.NotifyDataSetChanged();
+        }
+
+        private void EnableButtons(bool enable)
+        {
+            var root = FindViewById<ConstraintLayout>(Resource.Id.scheduleRoot);
+            for (var i = 0; i < root.ChildCount; i++)
+            {
+                var child = root.GetChildAt(i);
+                if (child is Button button)
+                {
+                    button.Enabled = enable;
+                }
             }
         }
 

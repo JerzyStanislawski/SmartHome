@@ -10,7 +10,6 @@ using System.Net.Http;
 
 namespace SmartHome.Activities
 {
-    [Activity(Label = "BasePageActivity")]
     public class BasePageActivity : AppCompatActivity
     {
         protected HttpClient _httpClient;
@@ -24,6 +23,7 @@ namespace SmartHome.Activities
 
         public override bool OnCreateOptionsMenu(IMenu menu)
         {
+            SupportActionBar.SetDisplayHomeAsUpEnabled(true);
             MenuInflater.Inflate(Resource.Menu.toolbar_menu, menu);
             return base.OnCreateOptionsMenu(menu);
         }
@@ -33,7 +33,7 @@ namespace SmartHome.Activities
         {
             switch (item.ItemId)
             {
-                case Resource.Id.home:
+                case Android.Resource.Id.Home:  
                     NavUtils.NavigateUpFromSameTask(this);
                     return true;
                 case Resource.Id.action_schedule:

@@ -1,16 +1,9 @@
-﻿using Android.App;
-using Android.Content;
-using Android.OS;
-using Android.Runtime;
-using Android.Views;
-using Android.Widget;
+﻿using Android.Widget;
 using SmartHome.Model;
-using System;
 using System.Collections.Generic;
-using System.Linq;
 using System.Net;
 using System.Net.Http;
-using System.Text;
+using System.Threading.Tasks;
 
 namespace SmartHome.Activities
 {
@@ -20,27 +13,43 @@ namespace SmartHome.Activities
         bool _updatingStatus = false;
         ArduinoResponseParser _responseParser = new ArduinoResponseParser();
 
-        public void UpdateState()
+        private void UpdateState()
         {
-            var response = _httpClient.GetAsync($"http://{GetHost()}/getStatus").Result;
-            if (response.IsSuccessStatusCode)
+            EnableButtons(false);
+
+            Task.Run(async () =>
             {
-                var content = response.Content.ReadAsStringAsync().Result;
-                var state = _responseParser.ParseLightsStatus(content);
-                UpdateSwitches(state);
-            }
-            else
-            {
-                Toast.MakeText(this.ApplicationContext, Resource.String.connection_failure_message, ToastLength.Short).Show();
-            }
+                HttpResponseMessage response;
+                try
+                {
+                    response = await _httpClient.GetAsync($"http://{GetHost()}/getStatus");
+                }
+                catch
+                {
+                    response = new HttpResponseMessage(HttpStatusCode.InternalServerError);
+                }
+
+                if (response.IsSuccessStatusCode)
+                {
+                    var content = response.Content.ReadAsStringAsync().Result;
+                    var state = _responseParser.ParseLightsStatus(content);
+
+                    EnableButtons(true);
+                    RunOnUiThread(() => UpdateSwitches(state));
+                }
+                else
+                {
+                    RunOnUiThread(() => Toast.MakeText(this.ApplicationContext, Resource.String.connection_failure_message, ToastLength.Short).Show());
+                }
+            });
         }
 
         private void UpdateSwitches(IDictionary<int, bool> state)
         {
             _updatingStatus = true;
-            foreach (var (switchKey, switchValue) in _switches)
+            foreach (var (switchKey, _) in _switches)
             {
-                 var sButton = (Switch)FindViewById(switchKey);
+                var sButton = (Switch)FindViewById(switchKey);
 
                 int lightId = _switches[switchKey].Output;
                 if (state.ContainsKey(lightId))
@@ -51,6 +60,18 @@ namespace SmartHome.Activities
                 }
             }
             _updatingStatus = false;
+        }
+
+        private void EnableButtons(bool enable)
+        {
+            RunOnUiThread(() =>
+            {
+                foreach (var switchKey in _switches.Keys)
+                {
+                    var @switch = (Switch)FindViewById(switchKey);
+                    @switch.Enabled = enable;
+                }
+            });
         }
 
         protected void Initialize()
@@ -91,15 +112,29 @@ namespace SmartHome.Activities
                 if (_activity._updatingStatus)
                     return;
 
-                var responseCode = _activity._httpClient.PostAsync($"http://{_activity.GetHost()}/impulsOswietlenie",
-                    new StringContent($"{_light.Name}={buttonView.Checked.ToString().ToLowerInvariant()}")).Result.StatusCode;
-
-                if (responseCode != HttpStatusCode.OK)
+                Task.Run(async () =>
                 {
-                    Toast.MakeText(this._activity.ApplicationContext,
-                        $"{Resource.String.arduino_response_message}{responseCode}", ToastLength.Short).Show();
-                    buttonView.Checked = !isChecked;
-                }
+                    HttpStatusCode responseCode;
+                    try
+                    {
+                        responseCode = (await _activity._httpClient.PostAsync($"http://{_activity.GetHost()}/impulsOswietlenie",
+                            new StringContent($"{_light.Name}={buttonView.Checked.ToString().ToLowerInvariant()}"))).StatusCode;
+                    }
+                    catch
+                    {
+                        responseCode = HttpStatusCode.InternalServerError;
+                    }
+
+                    if (responseCode != HttpStatusCode.OK)
+                    {
+                        _activity.RunOnUiThread(() =>
+                        {
+                            Toast.MakeText(_activity.ApplicationContext,
+                                $"{_activity.GetString(Resource.String.arduino_response_message)}{responseCode}", ToastLength.Short).Show();
+                            buttonView.Checked = !isChecked;
+                        });
+                    }
+                });
             }
         }
     }

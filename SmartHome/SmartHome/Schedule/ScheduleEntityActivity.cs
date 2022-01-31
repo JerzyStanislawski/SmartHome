@@ -12,8 +12,7 @@ using System.Linq;
 
 namespace SmartHome.Schedule
 {
-    [Activity(Label = "ScheduleEntityActivity")]
-    [MetaData("android.support.PARENT_ACTIVITY", Value = "com.smarthome.ScheduleActivity")]
+    [Activity(Label = "@string/app_name", Theme = "@style/AppTheme", ParentActivity = typeof(ScheduleActivity))]
     public class ScheduleEntityActivity : BasePageActivity
     {
         ArrayAdapter<object> _spinnerAdapter;
@@ -114,7 +113,7 @@ namespace SmartHome.Schedule
             {
                 case Resource.Id.submit_item:
                     Intent intent = CreateIntent();
-                    SetResult(ScheduleActivity.RESULT_CODE_OK, intent);
+                    SetResult(Result.Ok, intent);
                     Finish();
                     return true;
                 case Resource.Id.delete_item:
@@ -124,7 +123,7 @@ namespace SmartHome.Schedule
                     Finish();
                     return true;
                 case Android.Resource.Id.Home:
-                    SetResult((Result)ScheduleActivity.RESULT_CODE_BACK);
+                    SetResult(Result.Canceled);
                     Finish();
                     return true;
                 default:
@@ -163,7 +162,7 @@ namespace SmartHome.Schedule
             else if (type == ScheduleType.BLINDS)
             {
                 var blind = roomSpinner.SelectedItem.JavaCast<Blind>();
-                room = StripBlindName(blind.Name);
+                room = blind.Name;
                 room += onOrUp ? "_up" : "_down";
                 roomNiceName = blind.NiceName;
             }
@@ -197,11 +196,15 @@ namespace SmartHome.Schedule
             }
             else if (type == ScheduleType.BLINDS && area == Area.GROUNDFLOOR)
             {
-                _spinnerArray = StaticData.GroundBlinds.Values.OrderBy(x => x.NiceName).Distinct().ToArray();
+                _spinnerArray = StaticData.GroundBlinds.Values.OrderBy(x => x.NiceName)
+                    .Select(x => new Blind(StripBlindName(x.Name), x.NiceName))
+                    .GroupBy(x => x.NiceName).Select(x => x.First()).ToArray();
             }
             else if (type == ScheduleType.BLINDS && area == Area.ATTIC)
             {
-                _spinnerArray = StaticData.AtticBlinds.Values.OrderBy(x => x.NiceName).Distinct().ToArray();
+                _spinnerArray = StaticData.AtticBlinds.Values.OrderBy(x => x.NiceName)
+                    .Select(x => new Blind(StripBlindName(x.Name), x.NiceName))
+                    .GroupBy(x => x.NiceName).Select(x => x.First()).ToArray();
             }
 
             var spinner = (Spinner)FindViewById(Resource.Id.room_spinner);
@@ -214,6 +217,7 @@ namespace SmartHome.Schedule
         {
             ((RadioGroup)view.Parent).ClearCheck();
             ((RadioGroup)view.Parent).Check(view.Id);
+            ((ToggleButton)view).Checked = true;
         }
 
         [Java.Interop.Export("OnToggleType")]

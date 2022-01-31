@@ -4,7 +4,8 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".LightsAtticActivity">
+    tools:context=".LightsAtticActivity"
+    android:id="@+id/root_lights_attic">
 
     <Switch
         android:id="@+id/switchSypialnia"

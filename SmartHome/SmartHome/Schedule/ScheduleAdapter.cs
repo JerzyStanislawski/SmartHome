@@ -7,12 +7,9 @@ namespace SmartHome.Schedule
 {
     public class ScheduleAdapter : ArrayAdapter<ScheduleEntity>
     {
-        private readonly List<ScheduleEntity> _items;
-
-        public ScheduleAdapter(Context context, int textViewResourceId, ScheduleEntity[] objects) 
+        public ScheduleAdapter(Context context, int textViewResourceId, IList<ScheduleEntity> objects) 
             : base(context, textViewResourceId, objects)
         {
-            _items = new List<ScheduleEntity>(objects);
         }
 
         public override View GetView(int position, View convertView, ViewGroup parent)
@@ -23,8 +20,8 @@ namespace SmartHome.Schedule
                 var vi = (LayoutInflater)Context.GetSystemService(Context.LayoutInflaterService);
                 v = vi.Inflate(Resource.Layout.schedule_row, null);
             }
-            
-            var entity = _items[position];
+
+            var entity = GetItem(position);
             if (entity != null)
             {
                 var roomTextView = (TextView)v.FindViewById(Resource.Id.rowRoom);

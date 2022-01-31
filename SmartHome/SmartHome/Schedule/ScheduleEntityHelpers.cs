@@ -61,13 +61,7 @@ namespace SmartHome.Schedule
 
         public static string BuildHttpRequestLine(ScheduleEntity entity)
         {
-            return String.Format("%s,%c,%02d:%02d,%03d,%d;",
-                        entity.Room,
-                        entity.Type == ScheduleType.LIGHTS ? 'L' : 'B',
-                        entity.Time.Hours,
-                        entity.Time.Minutes,
-                        entity.DaysMask,
-                        entity.OnOrUp ? 1 : 0);
+            return $"{entity.Room},{(entity.Type == ScheduleType.LIGHTS ? "L" : "B")},{entity.Time.Hours:D2},{entity.Time.Minutes:D2},{entity.DaysMask:D3},{(entity.OnOrUp ? 1 : 0)};";
         }
     }
 }
