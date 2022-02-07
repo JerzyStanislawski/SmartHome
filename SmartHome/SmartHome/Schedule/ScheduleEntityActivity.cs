@@ -197,13 +197,13 @@ namespace SmartHome.Schedule
             else if (type == ScheduleType.BLINDS && area == Area.GROUNDFLOOR)
             {
                 _spinnerArray = StaticData.GroundBlinds.Values.OrderBy(x => x.NiceName)
-                    .Select(x => new Blind(StripBlindName(x.Name), x.NiceName))
+                    .Select(x => new Blind(StripBlindName(x.Name), x.NiceName, x.SpeechName))
                     .GroupBy(x => x.NiceName).Select(x => x.First()).ToArray();
             }
             else if (type == ScheduleType.BLINDS && area == Area.ATTIC)
             {
                 _spinnerArray = StaticData.AtticBlinds.Values.OrderBy(x => x.NiceName)
-                    .Select(x => new Blind(StripBlindName(x.Name), x.NiceName))
+                    .Select(x => new Blind(StripBlindName(x.Name), x.NiceName, x.SpeechName))
                     .GroupBy(x => x.NiceName).Select(x => x.First()).ToArray();
             }
 

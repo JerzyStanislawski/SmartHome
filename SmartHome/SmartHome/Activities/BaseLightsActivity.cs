@@ -114,26 +114,12 @@ namespace SmartHome.Activities
 
                 Task.Run(async () =>
                 {
-                    HttpStatusCode responseCode;
-                    try
-                    {
-                        responseCode = (await _activity._httpClient.PostAsync($"http://{_activity.GetHost()}/impulsOswietlenie",
-                            new StringContent($"{_light.Name}={buttonView.Checked.ToString().ToLowerInvariant()}"))).StatusCode;
-                    }
-                    catch
-                    {
-                        responseCode = HttpStatusCode.InternalServerError;
-                    }
+                    var response = await HttpClientWrapper.Post($"http://{_activity.GetHost()}/impulsOswietlenie",
+                        $"{_light.Name}={buttonView.Checked.ToString().ToLowerInvariant()}",
+                        _activity);
 
-                    if (responseCode != HttpStatusCode.OK)
-                    {
-                        _activity.RunOnUiThread(() =>
-                        {
-                            Toast.MakeText(_activity.ApplicationContext,
-                                $"{_activity.GetString(Resource.String.arduino_response_message)}{responseCode}", ToastLength.Short).Show();
-                            buttonView.Checked = !isChecked;
-                        });
-                    }
+                    if (response != HttpStatusCode.OK)
+                        buttonView.Checked = !isChecked;
                 });
             }
         }

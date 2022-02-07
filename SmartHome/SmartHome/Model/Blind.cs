@@ -5,13 +5,15 @@ namespace SmartHome.Model
 {
     public class Blind : Java.Lang.Object, IJavaObject
     {
-        public string Name { get; set; }
-        public string NiceName { get; set; }
+        public string Name { get; private set; }
+        public string NiceName { get; private set; }
+        public string[] SpeechName { get; private set; }
 
-        public Blind(string name, string niceName)
+        public Blind(string name, string niceName, string[] speechName)
         {
             Name = name;
             NiceName = niceName;
+            SpeechName = speechName;
         }
 
         public override string ToString() => NiceName;

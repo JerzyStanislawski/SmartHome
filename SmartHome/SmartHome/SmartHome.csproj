@@ -69,6 +69,7 @@
     <Compile Include="Activities\BlindsGroundActivity.cs" />
     <Compile Include="Activities\LightsAtticActivity.cs" />
     <Compile Include="Activities\LightsGroundActivity.cs" />
+    <Compile Include="Commands.cs" />
     <Compile Include="Schedule\Area.cs" />
     <Compile Include="Schedule\ScheduleActivity.cs" />
     <Compile Include="Schedule\ScheduleAdapter.cs" />
@@ -79,13 +80,15 @@
     <Compile Include="Schedule\ScheduleType.cs" />
     <Compile Include="Settings\SettingsActivity.cs" />
     <Compile Include="ArduinoResponseParser.cs" />
-    <Compile Include="HttpClientFactory.cs" />
+    <Compile Include="HttpClientWrapper.cs" />
     <Compile Include="Activities\MainActivity.cs" />
     <Compile Include="Model\Blind.cs" />
     <Compile Include="Model\Light.cs" />
     <Compile Include="Model\Settings.cs" />
     <Compile Include="Resources\Resource.designer.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Speech\SpeechIntent.cs" />
+    <Compile Include="Speech\SpeechRecognitionLogic.cs" />
     <Compile Include="StaticData.cs" />
     <Compile Include="Settings\TimePopupWindow.cs" />
     <Compile Include="Settings\WeekDaysHelper.cs" />
@@ -233,7 +236,9 @@
       <SubType>Designer</SubType>
     </AndroidResource>
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <AndroidResource Include="Resources\drawable\ic_mic_white_24dp.xml" />
+  </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath)\Xamarin\Android\Xamarin.Android.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it.
     Other similar extension points exist, see Microsoft.Common.targets.

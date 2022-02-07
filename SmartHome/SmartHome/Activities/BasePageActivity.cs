@@ -6,6 +6,7 @@ using AndroidX.AppCompat.App;
 using AndroidX.Core.App;
 using SmartHome.Schedule;
 using SmartHome.Settings;
+using SmartHome.Speech;
 using System.Net.Http;
 
 namespace SmartHome.Activities
@@ -13,12 +14,13 @@ namespace SmartHome.Activities
     public class BasePageActivity : AppCompatActivity
     {
         protected HttpClient _httpClient;
+        private SpeechIntent _speechIntent;
 
         protected override void OnCreate(Bundle savedInstanceState)
         {
             base.OnCreate(savedInstanceState);
 
-            _httpClient = HttpClientFactory.Get();            
+            _httpClient = HttpClientWrapper.GetClient();            
         }
 
         public override bool OnCreateOptionsMenu(IMenu menu)
@@ -36,6 +38,10 @@ namespace SmartHome.Activities
                 case Android.Resource.Id.Home:  
                     NavUtils.NavigateUpFromSameTask(this);
                     return true;
+                case Resource.Id.action_speak:
+                    _speechIntent = new SpeechIntent(this);
+                    _speechIntent.Start();
+                    return true;
                 case Resource.Id.action_schedule:
                     var scheduleIntent = new Intent(this, typeof(ScheduleActivity));
                     StartActivity(scheduleIntent);
@@ -47,6 +53,16 @@ namespace SmartHome.Activities
                 default:
                     return base.OnOptionsItemSelected(item);
             }
+        }
+
+        protected override void OnActivityResult(int requestCode, Result resultVal, Intent data)
+        {
+            if (requestCode == SpeechIntent.VOICE)
+            {
+                _speechIntent.HandleResult(resultVal, data);
+            }
+
+            base.OnActivityResult(requestCode, resultVal, data);
         }
     }
 }

@@ -1,15 +1,9 @@
-﻿using Android.App;
-using Android.Content;
-using Android.OS;
-using Android.Runtime;
-using Android.Views;
-using Android.Widget;
+﻿using Android.Content;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Net;
 using System.Net.Http;
-using System.Text;
 using System.Threading.Tasks;
 
 namespace SmartHome.Schedule
@@ -22,7 +16,7 @@ namespace SmartHome.Schedule
         public ScheduleCommunication(Context applicationContext)
         {
             _applicationContext = applicationContext;
-            _httpClient = HttpClientFactory.Get();
+            _httpClient = HttpClientWrapper.GetClient();
         }
 
         public async Task<IEnumerable<ScheduleEntity>> RetrieveData()

@@ -2,6 +2,7 @@
 using Android.Content;
 using Android.OS;
 using Android.Runtime;
+using Android.Speech;
 using Android.Views;
 using Android.Widget;
 using Java.Interop;
@@ -99,27 +100,7 @@ namespace SmartHome.Activities
             var url = $"http://{hostAddress}/{relativeUrl}";
             Task.Run(async () =>
             {
-                HttpStatusCode responseCode;
-                try
-                {
-                    responseCode = (await _httpClient.PostAsync(url, new StringContent("allOff=0"))).StatusCode;
-                }
-                catch
-                {
-                    responseCode = HttpStatusCode.InternalServerError;
-                }
-                NotifyOnFailure(responseCode);
-            });
-        }
-
-        private void NotifyOnFailure(HttpStatusCode responseCode)
-        {
-            RunOnUiThread(() =>
-            {
-                if (responseCode != HttpStatusCode.OK)
-                {
-                    Toast.MakeText(ApplicationContext, $"Odpowiedź z rodzielni: {responseCode}", ToastLength.Short).Show();
-                }
+                await HttpClientWrapper.Post(url, payload, this);
             });
         }
     }

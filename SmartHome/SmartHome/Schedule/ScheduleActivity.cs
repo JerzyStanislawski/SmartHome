@@ -23,7 +23,6 @@ namespace SmartHome.Schedule
 
         public const int REQUEST_CODE_ADD_ENTITY = 0;
         public const int REQUEST_CODE_EDIT_ENTITY = 1;
-
         public const int RESULT_CODE_REMOVE = 2;
 
         protected override void OnCreate(Bundle savedInstanceState)

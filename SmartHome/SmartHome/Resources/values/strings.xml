@@ -13,4 +13,15 @@
 	<string name="connection_failure_message">Nie udało się połączyć z rozdzielnią</string>
 	<string name="arduino_response_message">Odpowiedź z rozdzielni: </string>
 	<string name="send_schedule_fail">"Nie udało się wysłać planu</string>
+	<string name="no_mic">"Brak mikrofonu</string>
+	<string name="speech_recognition_turn_on">włącz,zapal</string>
+	<string name="speech_recognition_turn_off">wyłącz,zgaś</string>
+	<string name="speech_recognition_light">światło,lampę</string>
+	<string name="speech_recognition_lights">światła,lampy</string>
+	<string name="speech_recognition_move_up">podnieś,otwórz</string>
+	<string name="speech_recognition_move_down">opuść,zamknij</string>
+	<string name="speech_recognition_blind">roletę,żaluzję,żaluzje</string>
+	<string name="speech_recognition_blinds">rolety,żaluzje</string>
+	<string name="speech_recognition_ground">na dole,na parterze</string>
+	<string name="speech_recognition_attic">na górze,na piętrze,na poddaszu</string>
 </resources>

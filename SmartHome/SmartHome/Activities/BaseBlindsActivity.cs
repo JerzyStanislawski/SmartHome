@@ -42,25 +42,7 @@ namespace SmartHome.Activities
             {
                 Task.Run(async () =>
                 {
-                    HttpStatusCode responseCode;
-                    try
-                    {
-                        responseCode = (await _activity._httpClient.PostAsync($"http://{_activity.GetHost()}/impulsRolety",
-                            new StringContent(_blind.Name))).StatusCode;
-                    }
-                    catch
-                    {
-                        responseCode = HttpStatusCode.InternalServerError;
-                    }
-
-                    if (responseCode != HttpStatusCode.OK)
-                    {
-                        _activity.RunOnUiThread(() =>
-                        {
-                            Toast.MakeText(_activity.ApplicationContext,
-                                $"{_activity.GetString(Resource.String.arduino_response_message)}{responseCode}", ToastLength.Short).Show();
-                        });
-                    }
+                    await HttpClientWrapper.Post($"http://{_activity.GetHost()}/impulsRolety", _blind.Name, _activity);
                 });
             }
         }
