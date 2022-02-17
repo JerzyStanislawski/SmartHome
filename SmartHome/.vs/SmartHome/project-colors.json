@@ -5,7 +5,27 @@
       "ProjectGuid": "70996c51-4239-46ef-a8ae-201c597c5121",
       "DisplayName": "SmartHome",
       "ColorIndex": 0
+    },
+    "46b8e7c0-7c22-4a53-b79a-0902ab55b869": {
+      "ProjectGuid": "46b8e7c0-7c22-4a53-b79a-0902ab55b869",
+      "DisplayName": "SmartHome.Tests",
+      "ColorIndex": 1
+    },
+    "637c7ef2-8de2-425c-bfdf-66c4101d8242": {
+      "ProjectGuid": "637c7ef2-8de2-425c-bfdf-66c4101d8242",
+      "DisplayName": "SmartHome.Test",
+      "ColorIndex": 2
+    },
+    "2d160bc7-2038-4163-af1e-2b2d1f6e93d6": {
+      "ProjectGuid": "2d160bc7-2038-4163-af1e-2b2d1f6e93d6",
+      "DisplayName": "SmartHome.Tests",
+      "ColorIndex": 3
+    },
+    "a2fe74e1-b743-11d0-ae1a-00a0c90fffc3": {
+      "ProjectGuid": "a2fe74e1-b743-11d0-ae1a-00a0c90fffc3",
+      "DisplayName": "Różne pliki",
+      "ColorIndex": -1
     }
   },
-  "NextColorIndex": 1
+  "NextColorIndex": 4
 }

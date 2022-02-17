@@ -4,6 +4,7 @@ using Android.Speech;
 using Android.Widget;
 using SmartHome.Activities;
 using System;
+using System.Threading.Tasks;
 
 namespace SmartHome.Speech
 {
@@ -11,12 +12,14 @@ namespace SmartHome.Speech
     {
         private readonly BasePageActivity _activity;
         private readonly SpeechRecognitionLogic _speechRecognitionLogic;
+        private readonly CommandHandler _commandHandler;
         public const int VOICE = 10;
 
         public SpeechIntent(BasePageActivity activity)
         {
             _activity = activity;
-            _speechRecognitionLogic = new SpeechRecognitionLogic();
+            _speechRecognitionLogic = new SpeechRecognitionLogic(activity);
+            _commandHandler = new CommandHandler(activity);
 
             SetupMic();
         }
@@ -35,8 +38,8 @@ namespace SmartHome.Speech
             var voiceIntent = new Intent(RecognizerIntent.ActionRecognizeSpeech);
             voiceIntent.PutExtra(RecognizerIntent.ExtraLanguageModel, RecognizerIntent.LanguageModelFreeForm);
             voiceIntent.PutExtra(RecognizerIntent.ExtraPrompt, String.Empty);
-            voiceIntent.PutExtra(RecognizerIntent.ExtraSpeechInputCompleteSilenceLengthMillis, 500);
-            voiceIntent.PutExtra(RecognizerIntent.ExtraSpeechInputPossiblyCompleteSilenceLengthMillis, 500);
+            voiceIntent.PutExtra(RecognizerIntent.ExtraSpeechInputCompleteSilenceLengthMillis, 1000);
+            voiceIntent.PutExtra(RecognizerIntent.ExtraSpeechInputPossiblyCompleteSilenceLengthMillis, 1000);
             voiceIntent.PutExtra(RecognizerIntent.ExtraSpeechInputMinimumLengthMillis, 15000);
             voiceIntent.PutExtra(RecognizerIntent.ExtraMaxResults, 1);
             voiceIntent.PutExtra(RecognizerIntent.ExtraLanguage, Java.Util.Locale.ForLanguageTag("PL"));
@@ -50,8 +53,17 @@ namespace SmartHome.Speech
                 var matches = data.GetStringArrayListExtra(RecognizerIntent.ExtraResults);
                 var text = string.Join(" ", matches);
 
-                _speechRecognitionLogic.Interpret(text);
-                Toast.MakeText(_activity.ApplicationContext, text, ToastLength.Short).Show();
+                var command = _speechRecognitionLogic.Interpret(text);
+
+                if (command == null)
+                {
+                    Toast.MakeText(_activity.ApplicationContext, _activity.GetString(Resource.String.speech_recognition_command_not_recognized), ToastLength.Short).Show();
+                    Start();
+                }
+                else
+                {
+                    Task.Run(() => _commandHandler.Handle(command));
+                }
             }
         }
     }

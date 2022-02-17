@@ -6089,13 +6089,16 @@ namespace SmartHome
 		{
 			
 			// aapt resource value: 0x7F0D0000
-			public const int ic_launcher = 2131558400;
+			public const int ic_house = 2131558400;
 			
 			// aapt resource value: 0x7F0D0001
-			public const int ic_launcher_foreground = 2131558401;
+			public const int ic_launcher = 2131558401;
 			
 			// aapt resource value: 0x7F0D0002
-			public const int ic_launcher_round = 2131558402;
+			public const int ic_launcher_foreground = 2131558402;
+			
+			// aapt resource value: 0x7F0D0003
+			public const int ic_launcher_round = 2131558403;
 			
 			static Mipmap()
 			{
@@ -6291,37 +6294,43 @@ namespace SmartHome
 			public const int send_schedule_fail = 2131623995;
 			
 			// aapt resource value: 0x7F0E003C
-			public const int speech_recognition_attic = 2131623996;
+			public const int speech_recognition_all = 2131623996;
 			
 			// aapt resource value: 0x7F0E003D
-			public const int speech_recognition_blind = 2131623997;
+			public const int speech_recognition_attic = 2131623997;
 			
 			// aapt resource value: 0x7F0E003E
-			public const int speech_recognition_blinds = 2131623998;
+			public const int speech_recognition_blind = 2131623998;
 			
 			// aapt resource value: 0x7F0E003F
-			public const int speech_recognition_ground = 2131623999;
+			public const int speech_recognition_blinds = 2131623999;
 			
 			// aapt resource value: 0x7F0E0040
-			public const int speech_recognition_light = 2131624000;
+			public const int speech_recognition_command_not_recognized = 2131624000;
 			
 			// aapt resource value: 0x7F0E0041
-			public const int speech_recognition_lights = 2131624001;
+			public const int speech_recognition_ground = 2131624001;
 			
 			// aapt resource value: 0x7F0E0042
-			public const int speech_recognition_move_down = 2131624002;
+			public const int speech_recognition_light = 2131624002;
 			
 			// aapt resource value: 0x7F0E0043
-			public const int speech_recognition_move_up = 2131624003;
+			public const int speech_recognition_lights = 2131624003;
 			
 			// aapt resource value: 0x7F0E0044
-			public const int speech_recognition_turn_off = 2131624004;
+			public const int speech_recognition_move_down = 2131624004;
 			
 			// aapt resource value: 0x7F0E0045
-			public const int speech_recognition_turn_on = 2131624005;
+			public const int speech_recognition_move_up = 2131624005;
 			
 			// aapt resource value: 0x7F0E0046
-			public const int status_bar_notification_info_overflow = 2131624006;
+			public const int speech_recognition_turn_off = 2131624006;
+			
+			// aapt resource value: 0x7F0E0047
+			public const int speech_recognition_turn_on = 2131624007;
+			
+			// aapt resource value: 0x7F0E0048
+			public const int status_bar_notification_info_overflow = 2131624008;
 			
 			static String()
 			{

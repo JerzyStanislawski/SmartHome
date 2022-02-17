@@ -8,20 +8,21 @@
         BlindDown,
         AllLightsOff,
         AllBlindsUp,
-        AllBlindsDown
+        AllBlindsDown,
+        Unknown
     }
 
     public class Command
     {
         public CommandType Type { get; }
         public string Room { get; }
+        public string Host { get; }
 
-        public const string All = "wszystkie";
-
-        public Command(CommandType type, string room)
+        public Command(CommandType type, string room, string host)
         {
             Type = type;
             Room = room;
+            Host = host;
         }
     }
 }

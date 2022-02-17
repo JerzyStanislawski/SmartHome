@@ -18,10 +18,12 @@
 	<string name="speech_recognition_turn_off">wyłącz,zgaś</string>
 	<string name="speech_recognition_light">światło,lampę</string>
 	<string name="speech_recognition_lights">światła,lampy</string>
-	<string name="speech_recognition_move_up">podnieś,otwórz</string>
-	<string name="speech_recognition_move_down">opuść,zamknij</string>
+	<string name="speech_recognition_move_up">podnieś,otwórz,odsłoń</string>
+	<string name="speech_recognition_move_down">opuść,zamknij,zasłoń,zasuń</string>
 	<string name="speech_recognition_blind">roletę,żaluzję,żaluzje</string>
 	<string name="speech_recognition_blinds">rolety,żaluzje</string>
 	<string name="speech_recognition_ground">na dole,na parterze</string>
 	<string name="speech_recognition_attic">na górze,na piętrze,na poddaszu</string>
+	<string name="speech_recognition_all">wszystkie</string>
+	<string name="speech_recognition_command_not_recognized">Nie zrozumiałem komendy</string>
 </resources>

@@ -2,25 +2,24 @@
 using Android.Content;
 using Android.OS;
 using Android.Runtime;
-using Android.Speech;
 using Android.Views;
-using Android.Widget;
 using Java.Interop;
-using System.Net;
-using System.Net.Http;
-using System.Threading.Tasks;
 
 namespace SmartHome.Activities
 {
-    [Activity(Label = "@string/app_name", Theme = "@style/AppTheme", MainLauncher = true)]
+    [Activity(Label = "@string/app_name", Theme = "@style/AppTheme", MainLauncher = true, Icon = "@mipmap/ic_house")]
     public class MainActivity : BasePageActivity
     {
+        private CommandHandler _commandHandler;
+
         protected override void OnCreate(Bundle savedInstanceState)
         {
             base.OnCreate(savedInstanceState);
             Xamarin.Essentials.Platform.Init(this, savedInstanceState);
             // Set our view from the "main" layout resource
             SetContentView(Resource.Layout.activity_main);
+
+            _commandHandler = new CommandHandler(this);
         }
 
         public override void OnRequestPermissionsResult(int requestCode, string[] permissions, [GeneratedEnum] Android.Content.PM.Permission[] grantResults)
@@ -59,49 +58,39 @@ namespace SmartHome.Activities
         }
 
         [Export("NavigateBlindsGroundUp")]
-        public void NavigateBlindsGroundUp(View _)
+        public async void NavigateBlindsGroundUp(View _)
         {
-            PostRequest(Resource.String.ground_host, "impulsRolety", "allRoletyUp");
+            await _commandHandler.Handle(new Command(CommandType.AllBlindsUp, string.Empty, GetString(Resource.String.ground_host)));
         }
 
         [Export("NavigateBlindsGroundDown")]
-        public void NavigateBlindsGroundDown(View _)
+        public async void NavigateBlindsGroundDown(View _)
         {
-            PostRequest(Resource.String.ground_host, "impulsRolety", "allRoletyDown");
+            await _commandHandler.Handle(new Command(CommandType.AllBlindsDown, string.Empty, GetString(Resource.String.ground_host)));
         }
 
         [Export("NavigateBlindsAtticUp")]
-        public void NavigateBlindsAtticUp(View _)
+        public async void NavigateBlindsAtticUp(View _)
         {
-            PostRequest(Resource.String.attic_host, "impulsRolety", "allRoletyUp");
+            await _commandHandler.Handle(new Command(CommandType.AllBlindsUp, string.Empty, GetString(Resource.String.attic_host)));
         }
 
         [Export("NavigateBlindsAtticDown")]
-        public void NavigateBlindsAtticDown(View _)
+        public async void NavigateBlindsAtticDown(View _)
         {
-            PostRequest(Resource.String.attic_host, "impulsRolety", "allRoletyDown");
+            await _commandHandler.Handle(new Command(CommandType.AllBlindsUp, string.Empty, GetString(Resource.String.attic_host)));
         }
 
         [Export("NavigateLightsGroundOff")]
-        public void NavigateLightsGroundOff(View _)
+        public async void NavigateLightsGroundOff(View _)
         {
-            PostRequest(Resource.String.ground_host, "impulsOswietlenie", "allOff=0");
+            await _commandHandler.Handle(new Command(CommandType.AllLightsOff, string.Empty, GetString(Resource.String.ground_host)));
         }
 
         [Export("NavigateLightsAtticOff")]
-        public void NavigateLightsAtticOff(View _)
+        public async void NavigateLightsAtticOff(View _)
         {
-            PostRequest(Resource.String.attic_host, "impulsOswietlenie", "allOff=0");
-        }
-
-        private void PostRequest(int host, string relativeUrl, string payload)
-        {
-            var hostAddress = GetString(host);
-            var url = $"http://{hostAddress}/{relativeUrl}";
-            Task.Run(async () =>
-            {
-                await HttpClientWrapper.Post(url, payload, this);
-            });
+            await _commandHandler.Handle(new Command(CommandType.AllLightsOff, string.Empty, GetString(Resource.String.attic_host)));
         }
     }
 }

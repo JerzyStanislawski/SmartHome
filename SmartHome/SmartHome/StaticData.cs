@@ -75,8 +75,8 @@ namespace SmartHome
             const int OSW_KORYTARZ = 53;
 
             AtticLights[Resource.Id.switchSypialnia] = new Light("sypialnia", OSW_SYPIALNIA, "Sypialnia", new[] { "w sypialni" });
-            AtticLights[Resource.Id.switchAdam] = new Light("pokoj1", OSW_POKOJ_ADAM, "Adam", new[] { "u Adama" });
-            AtticLights[Resource.Id.switchUla] = new Light("pokoj2", OSW_POKOJ_ULA, "Ula", new[] { "u Uli" });
+            AtticLights[Resource.Id.switchAdam] = new Light("pokoj1", OSW_POKOJ_ADAM, "Adam", new[] { "u Adama", "u Adasia" });
+            AtticLights[Resource.Id.switchUla] = new Light("pokoj2", OSW_POKOJ_ULA, "Ula", new[] { "u Uli", "u Ulki" });
             AtticLights[Resource.Id.switchLazienka] = new Light("lazienka_gora", OSW_LAZIENKA_GORA, "Łazienka - główne", new[] { "w łazience na górze" });
             AtticLights[Resource.Id.switchLazienkaKinkiety] = new Light("lazienka_kinkiety", OSW_LAZIENKA_KINKIETY, "Łazienka - kinkiety", new[] { "w łazience kinkiety", "w łazience na górze kinkiety" });
             AtticLights[Resource.Id.switchLazienkaLed] = new Light("lazienka_led", OSW_LAZIENKA_LED, "Łazienka - LED", new[] { "w łazience led", "w łazience ledy", "w łazience na górze led", "w łazience na górze ledy" });
@@ -109,7 +109,7 @@ namespace SmartHome
             const int OSW_SALON = 42;
             const int OSW_KUCHNIA_SZAFKI = 43;
 
-            GroundLights[Resource.Id.switchSalon] = new Light("salon", OSW_SALON, "Salon - główne", new[] { "w salinie", "w salonie duże", "w salonie główne" });
+            GroundLights[Resource.Id.switchSalon] = new Light("salon", OSW_SALON, "Salon - główne", new[] { "w salonie", "w salonie duże", "w salonie główne" });
             GroundLights[Resource.Id.switchSalonKominek] = new Light("salon_kominek", OSW_SALON_KOMINEK, "Salon - kominek", new[] { "w salonie przy kominku", "w salonie kominek" });
             GroundLights[Resource.Id.switchSalonLed] = new Light("salon_led", OSW_SALON_LED, "Salon - LED", new[] { "w salonie led", "w salonie ledy" });
             GroundLights[Resource.Id.switchKuchnia] = new Light("kuchnia", OSW_KUCHNIA, "Kuchnia - główne", new[] { "w kuchni", "w kuchni główne" });
