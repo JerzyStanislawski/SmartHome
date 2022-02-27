@@ -60,25 +60,25 @@ namespace SmartHome.Activities
         [Export("NavigateBlindsGroundUp")]
         public async void NavigateBlindsGroundUp(View _)
         {
-            await _commandHandler.Handle(new Command(CommandType.AllBlindsUp, string.Empty, GetString(Resource.String.ground_host)));
+            await _commandHandler.Handle(new Command(CommandType.AllBlindsUp, string.Empty, GetString(Resource.String.attic_host)));
         }
 
         [Export("NavigateBlindsGroundDown")]
         public async void NavigateBlindsGroundDown(View _)
         {
-            await _commandHandler.Handle(new Command(CommandType.AllBlindsDown, string.Empty, GetString(Resource.String.ground_host)));
+            await _commandHandler.Handle(new Command(CommandType.AllBlindsDown, string.Empty, GetString(Resource.String.attic_host)));
         }
 
         [Export("NavigateBlindsAtticUp")]
         public async void NavigateBlindsAtticUp(View _)
         {
-            await _commandHandler.Handle(new Command(CommandType.AllBlindsUp, string.Empty, GetString(Resource.String.attic_host)));
+            await _commandHandler.Handle(new Command(CommandType.AllBlindsUp, string.Empty, GetString(Resource.String.ground_host)));
         }
 
         [Export("NavigateBlindsAtticDown")]
         public async void NavigateBlindsAtticDown(View _)
         {
-            await _commandHandler.Handle(new Command(CommandType.AllBlindsUp, string.Empty, GetString(Resource.String.attic_host)));
+            await _commandHandler.Handle(new Command(CommandType.AllBlindsUp, string.Empty, GetString(Resource.String.ground_host)));
         }
 
         [Export("NavigateLightsGroundOff")]
