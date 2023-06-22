@@ -51,7 +51,7 @@ namespace SmartHome.Activities
             {
                 var sButton = (Switch)FindViewById(switchKey);
 
-                int lightId = _switches[switchKey].Output;
+                int lightId = _switches[switchKey].Id;
                 if (state.ContainsKey(lightId))
                 {
                     var turnedOn = state[lightId];
