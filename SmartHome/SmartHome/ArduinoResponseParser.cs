@@ -24,7 +24,7 @@ namespace SmartHome
 
             var timeString = lines[0].Substring("Time: ".Length);
             var dateString = lines[1].Substring("Date: ".Length);
-            var dateTime = DateTime.ParseExact($"{dateString} {timeString}", "yyyy-M-d H:m:s", null);
+            var dateTime = DateTime.ParseExact($"{dateString} {timeString}", "yyy-M-d H:m:s", null).AddYears(1900);
 
             var holidayMode = ParseBoolValue(lines[2], "holidayMode");
             var twilightMode = ParseBoolValue(lines[3], "twilightMode");

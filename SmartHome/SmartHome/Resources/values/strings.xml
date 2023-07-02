@@ -8,8 +8,8 @@
 	<string name="common_up">↑</string>
 	<string name="common_down">↓</string>
 	<string name="common_off">OFF</string>
-	<string name="ground_host">192.168.1.25</string>
-	<string name="attic_host">192.168.1.26</string>
+	<string name="ground_host">192.168.1.28</string>
+	<string name="attic_host">192.168.1.28</string>
 	<string name="connection_failure_message">Nie udało się połączyć z rozdzielnią</string>
 	<string name="arduino_response_message">Odpowiedź z rozdzielni: </string>
 	<string name="send_schedule_fail">"Nie udało się wysłać planu</string>

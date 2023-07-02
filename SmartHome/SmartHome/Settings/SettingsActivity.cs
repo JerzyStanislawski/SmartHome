@@ -34,7 +34,7 @@ namespace SmartHome.Settings
             EnableButtons(false);
 
             RetrieveData(Resource.String.ground_host);
-            RetrieveData(Resource.String.attic_host);
+            //RetrieveData(Resource.String.attic_host);
         }
 
         void DisplayError(string response, int host)

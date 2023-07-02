@@ -1,5 +1,6 @@
 ﻿using Android.Widget;
 using SmartHome.Model;
+using System;
 using System.Collections.Generic;
 using System.Net;
 using System.Net.Http;
@@ -22,9 +23,10 @@ namespace SmartHome.Activities
                 HttpResponseMessage response;
                 try
                 {
+                    var host = GetHost();
                     response = await _httpClient.GetAsync($"http://{GetHost()}/getStatus");
                 }
-                catch
+                catch (Exception ex)
                 {
                     response = new HttpResponseMessage(HttpStatusCode.InternalServerError);
                 }
