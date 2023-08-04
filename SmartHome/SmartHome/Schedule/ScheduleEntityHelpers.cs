@@ -47,7 +47,7 @@ namespace SmartHome.Schedule
         {
             var parts = line.Split(",");
 
-            ScheduleType type = parts[1] == "0" ? ScheduleType.LIGHTS : ScheduleType.BLINDS;
+            ScheduleType type = parts[1] == "L" ? ScheduleType.LIGHTS : ScheduleType.BLINDS;
             var niceName = type == ScheduleType.LIGHTS 
                 ? StaticData.LightNames[parts[0]] 
                 : StaticData.BlindNames[parts[0]];

@@ -143,7 +143,7 @@ namespace SmartHome.Settings
                     }
                     else
                     {
-                        var settings = _responseParser.ParseAllSettingsResponse(content);
+                        var settings = _responseParser.ParseAllSettingsResponse(content.TrimEnd());
                         RunOnUiThread(() =>
                         {
                             UpdateData(settings, task.Result.ElapsedMilliseconds, host);

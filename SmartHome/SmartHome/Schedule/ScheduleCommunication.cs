@@ -24,7 +24,7 @@ namespace SmartHome.Schedule
             var entities = new List<ScheduleEntity>();
 
             await GetScheduledEvents(entities, _applicationContext.GetString(Resource.String.ground_host), Area.GROUNDFLOOR, Area.ATTIC);
-            await GetScheduledEvents(entities, _applicationContext.GetString(Resource.String.attic_host), Area.ATTIC, Area.GROUNDFLOOR);
+          //  await GetScheduledEvents(entities, _applicationContext.GetString(Resource.String.attic_host), Area.ATTIC, Area.GROUNDFLOOR);
 
             return entities;
         }
@@ -38,7 +38,7 @@ namespace SmartHome.Schedule
                 var content = await response.Content.ReadAsStringAsync();
                 if (!String.IsNullOrEmpty(content))
                 {
-                    var lines = content.TrimEnd().Split(";\r\n");
+                    var lines = content.Split(";\r\n").Where(x => !String.IsNullOrEmpty(x));
                     int i = entities.Count();
                     foreach (var line in lines)
                     {
